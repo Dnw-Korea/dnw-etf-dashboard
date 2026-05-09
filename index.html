@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DNW ETF Portfolio Dashboard</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      background: #08090c;
+      color: #ffffff;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans KR", sans-serif;
+      padding: 28px;
+    }
+
+    .dashboard {
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 24px;
+      margin-bottom: 32px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 13px;
+      border-radius: 999px;
+      background: rgba(34, 211, 238, 0.1);
+      border: 1px solid rgba(34, 211, 238, 0.28);
+      color: #a5f3fc;
+      font-size: 14px;
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      font-size: 46px;
+      line-height: 1.08;
+      letter-spacing: -0.04em;
+      font-weight: 900;
+    }
+
+    .subtitle {
+      margin-top: 12px;
+      color: #a1a1aa;
+      font-size: 18px;
+    }
+
+    .date-card {
+      min-width: 190px;
+      padding: 16px 20px;
+      border-radius: 22px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      text-align: right;
+    }
+
+    .muted {
+      color: #a1a1aa;
+      font-size: 13px;
+    }
+
+    .date-card strong {
+      display: block;
+      margin-top: 4px;
+      font-size: 17px;
+    }
+
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .kpi-card,
+    .panel {
+      border-radius: 30px;
+      background: #17181d;
+      border: 1px solid rgba(255,255,255,0.1);
+      box-shadow: 0 24px 70px rgba(0,0,0,0.32);
+    }
+
+    .kpi-card {
+      padding: 22px;
+    }
+
+    .kpi-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+
+    .icon {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.1);
+      font-size: 20px;
+    }
+
+    .kpi-label {
+      color: #a1a1aa;
+      font-size: 14px;
+      margin-bottom: 5px;
+    }
+
+    .kpi-value {
+      font-size: 25px;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+    }
+
+    .loss { color: #93c5fd; }
+    .gain { color: #f9a8d4; }
+    .cyan { color: #67e8f9; }
+
+    .main-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 22px;
+      margin-bottom: 24px;
+    }
+
+    .panel {
+      padding: 26px;
+    }
+
+    .panel-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    h2 {
+      font-size: 28px;
+      letter-spacing: -0.03em;
+      font-weight: 850;
+    }
+
+    .mini-box {
+      padding: 10px 14px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.08);
+      text-align: right;
+    }
+
+    .mini-box strong {
+      display: block;
+      margin-top: 3px;
+      font-size: 20px;
+      color: #67e8f9;
+    }
+
+    .weight-list {
+      display: grid;
+      gap: 18px;
+    }
+
+    .weight-row-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+      font-size: 15px;
+    }
+
+    .weight-name {
+      font-weight: 650;
+    }
+
+    .weight-value {
+      font-weight: 800;
+    }
+
+    .track {
+      height: 13px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.10);
+      overflow: hidden;
+    }
+
+    .fill {
+      height: 100%;
+      border-radius: 999px;
+      background: #22d3ee;
+      box-shadow: 0 0 20px rgba(34, 211, 238, 0.42);
+    }
+
+    .pnl-chart {
+      height: 300px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 17px;
+    }
+
+    .pnl-row {
+      display: grid;
+      grid-template-columns: 86px 1fr 90px;
+      gap: 12px;
+      align-items: center;
+      font-size: 14px;
+    }
+
+    .pnl-bar-track {
+      height: 22px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.10);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pnl-mid {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: rgba(255,255,255,0.25);
+    }
+
+    .pnl-bar {
+      position: absolute;
+      top: 0;
+      height: 100%;
+      border-radius: 999px;
+    }
+
+    .pnl-bar.positive {
+      left: 50%;
+      background: #f472b6;
+    }
+
+    .pnl-bar.negative {
+      right: 50%;
+      background: #60a5fa;
+    }
+
+    .pnl-value {
+      text-align: right;
+      font-weight: 800;
+    }
+
+    .table-panel {
+      margin-bottom: 24px;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      border-radius: 24px;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    table {
+      width: 100%;
+      min-width: 980px;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    th {
+      background: rgba(255,255,255,0.09);
+      color: #d4d4d8;
+      text-align: right;
+      padding: 15px 14px;
+      font-weight: 750;
+      white-space: nowrap;
+    }
+
+    th:first-child,
+    td:first-child {
+      text-align: left;
+    }
+
+    td {
+      padding: 15px 14px;
+      border-top: 1px solid rgba(255,255,255,0.09);
+      color: #e4e4e7;
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    td:first-child {
+      color: white;
+      font-weight: 720;
+    }
+
+    .total-row td {
+      background: rgba(255,255,255,0.045);
+      font-weight: 900;
+    }
+
+    .bottom-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 22px;
+    }
+
+    .status-box {
+      margin-top: 18px;
+      padding: 20px;
+      border-radius: 24px;
+      background: rgba(255,255,255,0.06);
+      font-size: 18px;
+      line-height: 1.65;
+    }
+
+    .memo-grid {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 13px;
+    }
+
+    .memo-card {
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.06);
+    }
+
+    .memo-card .key {
+      color: #a1a1aa;
+      font-size: 13px;
+      margin-bottom: 6px;
+    }
+
+    .memo-card .val {
+      font-weight: 800;
+    }
+
+    .note {
+      margin-top: 18px;
+      color: #71717a;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 980px) {
+      body { padding: 18px; }
+      .header { flex-direction: column; align-items: flex-start; }
+      .date-card { text-align: left; }
+      h1 { font-size: 36px; }
+      .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+      .main-grid, .bottom-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 620px) {
+      .kpi-grid { grid-template-columns: 1fr; }
+      h1 { font-size: 32px; }
+      .panel, .kpi-card { border-radius: 24px; padding: 20px; }
+      .memo-grid { grid-template-columns: 1fr; }
+    }
+  
+
+    .mobile-holdings {
+      display: none;
+    }
+
+    @media (max-width: 760px) {
+      body {
+        padding: 14px;
+      }
+
+      .dashboard {
+        max-width: 100%;
+      }
+
+      .header {
+        margin-bottom: 20px;
+      }
+
+      .badge {
+        font-size: 12px;
+        padding: 6px 10px;
+      }
+
+      h1 {
+        font-size: 28px;
+        line-height: 1.15;
+      }
+
+      .subtitle {
+        font-size: 14px;
+        line-height: 1.45;
+      }
+
+      .date-card {
+        width: 100%;
+        min-width: 0;
+        padding: 13px 15px;
+      }
+
+      .kpi-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+      }
+
+      .kpi-card {
+        padding: 15px;
+        border-radius: 20px;
+      }
+
+      .kpi-top {
+        margin-bottom: 14px;
+      }
+
+      .icon {
+        width: 34px;
+        height: 34px;
+        border-radius: 13px;
+        font-size: 17px;
+      }
+
+      .kpi-label {
+        font-size: 12px;
+      }
+
+      .kpi-value {
+        font-size: 18px;
+      }
+
+      .panel {
+        padding: 18px;
+        border-radius: 24px;
+      }
+
+      h2 {
+        font-size: 22px;
+      }
+
+      .mini-box {
+        padding: 9px 12px;
+      }
+
+      .mini-box strong {
+        font-size: 17px;
+      }
+
+      .weight-row-top {
+        font-size: 13px;
+      }
+
+      .track {
+        height: 10px;
+      }
+
+      .pnl-chart {
+        height: auto;
+        gap: 14px;
+      }
+
+      .pnl-row {
+        grid-template-columns: 64px 1fr 78px;
+        gap: 9px;
+        font-size: 12px;
+      }
+
+      .pnl-bar-track {
+        height: 18px;
+      }
+
+      .table-wrap {
+        display: none;
+      }
+
+      .mobile-holdings {
+        display: grid;
+        gap: 12px;
+      }
+
+      .holding-card {
+        border-radius: 20px;
+        background: rgba(255,255,255,0.055);
+        border: 1px solid rgba(255,255,255,0.1);
+        padding: 15px;
+      }
+
+      .holding-card.total-card {
+        border: 2px solid rgba(103,232,249,0.45);
+        background: linear-gradient(180deg, rgba(34,211,238,0.08), rgba(255,255,255,0.05));
+        box-shadow: 0 0 28px rgba(34,211,238,0.18);
+      }
+
+      .holding-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 10px;
+        margin-bottom: 13px;
+      }
+
+      .holding-title {
+        font-size: 15px;
+        font-weight: 850;
+        line-height: 1.35;
+      }
+
+      .holding-weight {
+        color: #67e8f9;
+        font-weight: 900;
+        white-space: nowrap;
+      }
+
+      .holding-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 9px;
+      }
+
+      .holding-cell {
+        padding: 10px;
+        border-radius: 14px;
+        background: rgba(0,0,0,0.18);
+      }
+
+      .holding-cell span {
+        display: block;
+        color: #a1a1aa;
+        font-size: 11px;
+        margin-bottom: 4px;
+      }
+
+      .holding-cell strong {
+        display: block;
+        font-size: 14px;
+        color: #f4f4f5;
+      }
+
+      .holding-cell strong.gain {
+        color: #f9a8d4;
+      }
+
+      .holding-cell strong.loss {
+        color: #93c5fd;
+      }
+
+      .memo-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .status-box {
+        font-size: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="dashboard">
+    <header class="header">
+      <div>
+        <div class="badge">📊 DNW 회비 ETF 운용 리포트</div>
+        <h1>ETF 포트폴리오 대시보드</h1>
+        <p class="subtitle">AI 전력 · AI 반도체 · 증권 · 2차전지 · K방산 동일비중 포트</p>
+      </div>
+      <div class="date-card">
+        <span class="muted">기준일</span>
+        <strong>2026.05.08 마감 기준</strong>
+      </div>
+    </header>
+
+    <section class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-top"><div class="icon">💰</div><span class="muted">원금 기준</span></div>
+        <div class="kpi-label">입금금액</div>
+        <div class="kpi-value">17,505,594원</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-top"><div class="icon">📊</div><span class="muted">주식 평가</span></div>
+        <div class="kpi-label">총 평가금액</div>
+        <div class="kpi-value">17,096,325원</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-top"><div class="icon">📉</div><span class="muted">-2.29%</span></div>
+        <div class="kpi-label">총 수익금액</div>
+        <div class="kpi-value loss">-400,705원</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-top"><div class="icon">🔥</div><span class="muted">0.03%</span></div>
+        <div class="kpi-label">예수금</div>
+        <div class="kpi-value">5,964원</div>
+      </div>
+    </section>
+
+    <section class="main-grid">
+      <div class="panel">
+        <div class="panel-head">
+          <div>
+            <h2>자산 비중</h2>
+            <p class="muted">평가금액 + 예수금 기준</p>
+          </div>
+          <div class="mini-box">
+            <span class="muted">주식 비중</span>
+            <strong>99.97%</strong>
+          </div>
+        </div>
+
+        <div class="weight-list">
+          <div class="weight-row">
+            <div class="weight-row-top"><span class="weight-name">SOL AI반도체TOP2플러스</span><span class="weight-value">20.18%</span></div>
+            <div class="track"><div class="fill" style="width: 96.3%"></div></div>
+          </div>
+          <div class="weight-row">
+            <div class="weight-row-top"><span class="weight-name">TIGER 코리아AI전력기기TOP3</span><span class="weight-value">19.98%</span></div>
+            <div class="track"><div class="fill" style="width: 96.2%"></div></div>
+          </div>
+          <div class="weight-row">
+            <div class="weight-row-top"><span class="weight-name">TIGER 2차전지TOP10</span><span class="weight-value">19.90%</span></div>
+            <div class="track"><div class="fill" style="width: 93.0%"></div></div>
+          </div>
+          <div class="weight-row">
+            <div class="weight-row-top"><span class="weight-name">KODEX 증권</span><span class="weight-value">20.10%</span></div>
+            <div class="track"><div class="fill" style="width: 88.9%"></div></div>
+          </div>
+          <div class="weight-row">
+            <div class="weight-row-top"><span class="weight-name">PLUS K방산</span><span class="weight-value">19.83%</span></div>
+            <div class="track"><div class="fill" style="width: 84.7%"></div></div>
+          </div>
+          <div class="weight-row">
+            <div class="weight-row-top"><span class="weight-name">예수금</span><span class="weight-value">0.03%</span></div>
+            <div class="track"><div class="fill" style="width: 1%"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <div>
+            <h2>수익금 비교</h2>
+            <p class="muted">종목별 평가손익 </p>
+          </div>
+          <div class="mini-box">
+            <span class="muted">계좌기준</span>
+            <strong class="loss">-400,705원</strong>
+          </div>
+        </div>
+
+        <div class="pnl-chart">
+          <div class="pnl-row">
+            <span>AI전력</span>
+            <div class="pnl-bar-track"><span class="pnl-mid"></span><span class="pnl-bar positive" style="width: 13.6%"></span></div>
+            <span class="pnl-value gain">+84,750</span>
+          </div>
+          <div class="pnl-row">
+            <span>AI반도체</span>
+            <div class="pnl-bar-track"><span class="pnl-mid"></span><span class="pnl-bar positive" style="width: 9.2%"></span></div>
+            <span class="pnl-value gain">+56,650</span>
+          </div>
+          <div class="pnl-row">
+            <span>증권</span>
+            <div class="pnl-bar-track"><span class="pnl-mid"></span><span class="pnl-bar negative" style="width: 32.8%"></span></div>
+            <span class="pnl-value loss">-207,335</span>
+          </div>
+          <div class="pnl-row">
+            <span>2차전지</span>
+            <div class="pnl-bar-track"><span class="pnl-mid"></span><span class="pnl-bar negative" style="width: 2.8%"></span></div>
+            <span class="pnl-value loss">-18,805</span>
+          </div>
+          <div class="pnl-row">
+            <span>K방산</span>
+            <div class="pnl-bar-track"><span class="pnl-mid"></span><span class="pnl-bar negative" style="width: 50%"></span></div>
+            <span class="pnl-value loss">-315,965</span>
+          </div>
+          
+        </div>
+      </div>
+    </section>
+
+    <section class="panel table-panel">
+      <div class="panel-head">
+        <div>
+          <h2>보유 ETF 상세</h2>
+          <p class="muted">팀원 공유용 요약 테이블</p>
+        </div>
+        <div class="mini-box">
+          <span class="muted">계좌 표시 총손익</span>
+          <strong class="loss">-400,705원 / -2.29%</strong>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>종목</th>
+              <th>수량</th>
+              <th>매입가</th>
+              <th>현재가</th>
+              <th>매입총액</th>
+              <th>평가금액</th>
+              <th>수익금</th>
+              <th>수익률</th>
+              <th>비중</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>TIGER 코리아AI전력기기TOP3</td>
+              <td>110</td><td>31,785</td><td>32,565</td><td>3,496,350</td><td>3,582,150</td><td class="gain">+84,750</td><td class="gain">+2.45%</td><td class="cyan">19.98%</td>
+            </tr>
+            <tr>
+              <td>SOL AI반도체TOP2플러스</td>
+              <td>210</td><td>16,810</td><td>17,085</td><td>3,530,150</td><td>3,587,850</td><td class="gain">+56,650</td><td class="gain">+1.63%</td><td class="cyan">20.18%</td>
+            </tr>
+            <tr>
+              <td>KODEX 증권</td>
+              <td>105</td><td>33,500</td><td>31,535</td><td>3,517,500</td><td>3,311,175</td><td class="loss">-207,335</td><td class="loss">-5.87%</td><td class="cyan">20.10%</td>
+            </tr>
+            <tr>
+              <td>TIGER 2차전지TOP10</td>
+              <td>237</td><td>14,695</td><td>14,620</td><td>3,482,715</td><td>3,464,940</td><td class="loss">-18,805</td><td class="loss">-0.51%</td><td class="cyan">19.90%</td>
+            </tr>
+            <tr>
+              <td>PLUS K방산</td>
+              <td>43</td><td>80,705</td><td>73,380</td><td>3,470,315</td><td>3,155,340</td><td class="loss">-315,965</td><td class="loss">-9.08%</td><td class="cyan">19.83%</td>
+            </tr>
+            <tr>
+              <td>예수금</td>
+              <td colspan="5">5,964원</td>
+              <td>-</td><td>-</td><td class="cyan">0.03%</td>
+            </tr>
+            
+            <tr class="total-row">
+              <td>합계</td>
+              <td></td><td></td><td></td><td>17,497,030</td><td>17,102,289</td><td class="loss">-400,705</td><td class="loss">-2.29%</td><td class="cyan">100.00%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="mobile-holdings">
+        <div class="holding-card">
+          <div class="holding-head"><div class="holding-title">TIGER 코리아AI전력기기TOP3</div><div class="holding-weight">19.98%</div></div>
+          <div class="holding-grid">
+            <div class="holding-cell"><span>수량</span><strong>110</strong></div>
+            <div class="holding-cell"><span>수익률</span><strong class="gain">+2.45%</strong></div>
+            <div class="holding-cell"><span>수익금</span><strong class="gain">+84,750</strong></div>
+            <div class="holding-cell"><span>평가금액</span><strong>3,582,150</strong></div>
+          </div>
+        </div>
+
+        <div class="holding-card">
+          <div class="holding-head"><div class="holding-title">SOL AI반도체TOP2플러스</div><div class="holding-weight">20.18%</div></div>
+          <div class="holding-grid">
+            <div class="holding-cell"><span>수량</span><strong>210</strong></div>
+            <div class="holding-cell"><span>수익률</span><strong class="gain">+1.63%</strong></div>
+            <div class="holding-cell"><span>수익금</span><strong class="gain">+56,650</strong></div>
+            <div class="holding-cell"><span>평가금액</span><strong>3,587,850</strong></div>
+          </div>
+        </div>
+
+        <div class="holding-card">
+          <div class="holding-head"><div class="holding-title">KODEX 증권</div><div class="holding-weight">20.10%</div></div>
+          <div class="holding-grid">
+            <div class="holding-cell"><span>수량</span><strong>105</strong></div>
+            <div class="holding-cell"><span>수익률</span><strong class="loss">-5.87%</strong></div>
+            <div class="holding-cell"><span>수익금</span><strong class="loss">-207,335</strong></div>
+            <div class="holding-cell"><span>평가금액</span><strong>3,311,175</strong></div>
+          </div>
+        </div>
+
+        <div class="holding-card">
+          <div class="holding-head"><div class="holding-title">TIGER 2차전지TOP10</div><div class="holding-weight">19.90%</div></div>
+          <div class="holding-grid">
+            <div class="holding-cell"><span>수량</span><strong>237</strong></div>
+            <div class="holding-cell"><span>수익률</span><strong class="loss">-0.51%</strong></div>
+            <div class="holding-cell"><span>수익금</span><strong class="loss">-18,805</strong></div>
+            <div class="holding-cell"><span>평가금액</span><strong>3,464,940</strong></div>
+          </div>
+        </div>
+
+        <div class="holding-card">
+          <div class="holding-head"><div class="holding-title">PLUS K방산</div><div class="holding-weight">19.83%</div></div>
+          <div class="holding-grid">
+            <div class="holding-cell"><span>수량</span><strong>43</strong></div>
+            <div class="holding-cell"><span>수익률</span><strong class="loss">-9.08%</strong></div>
+            <div class="holding-cell"><span>수익금</span><strong class="loss">-315,965</strong></div>
+            <div class="holding-cell"><span>평가금액</span><strong>3,155,340</strong></div>
+          </div>
+        </div>
+
+        <div class="holding-card total-card">
+          <div class="holding-head"><div class="holding-title">합계</div><div class="holding-weight">100.00%</div></div>
+          <div class="holding-grid">
+            <div class="holding-cell"><span>총 매입</span><strong>17,497,030</strong></div>
+            <div class="holding-cell"><span>총 평가</span><strong>17,102,289</strong></div>
+            <div class="holding-cell"><span>총 수익금</span><strong class="loss">-400,705</strong></div>
+            <div class="holding-cell"><span>총 수익률</span><strong class="loss">-2.29%</strong></div>
+            <div class="holding-cell"><span>예수금</span><strong>5,964</strong></div>
+            
+          </div>
+        </div>
+      </div>
+      <p class="note">※ 예수금은 국내주식 결제(T+2) 및 ETF 분배금·수수료 반영에 따라 장중·장마감 후 소폭 변동될 수 있음. 현재 총자산 기준: 평가금액 17,096,325원 + 예수금 5,964원 = 17,102,289원.
+※ 수익률은 실제 계좌 기준 평가수익률(보유수익률) 기준으로 표기. 개별 ETF 수익금 합계는 -400,705원이며 계좌 표시 총손익 -400,705원과의 차이 0원은 수수료·세금·증권사 정산 반영분.</p>
+    </section>
+
+    <section class="bottom-grid">
+      <div class="panel">
+        <h2>⚠️ 현재 상태</h2>
+        <div class="status-box">
+          일단 가즈아ㅏㅏㅏ 🔥🔥🔥🚀🚀🚀📈📈😇
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2>운용 메모</h2>
+        <div class="memo-grid">
+          <div class="memo-card"><div class="key">운용 방식</div><div class="val">5개 ETF 동일비중</div></div>
+          <div class="memo-card"><div class="key">포트 성격</div><div class="val">공격형 성장 ETF 포트</div></div>
+          <div class="memo-card"><div class="key">핵심 키워드</div><div class="val">AI / 전력 / 유동성 / 정책수혜</div></div>
+          <div class="memo-card"><div class="key">체크포인트</div><div class="val">방산 낙폭 안정화 + 증권 ETF 흐름</div></div>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
