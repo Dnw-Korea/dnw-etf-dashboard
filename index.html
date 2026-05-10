@@ -512,6 +512,8 @@
       font-weight: 800;
     }
 
+    
+
     .note {
       margin-top: 18px;
       color: #71717a;
@@ -862,7 +864,7 @@
 
     <section class="kpi-grid">
       <div class="kpi-card">
-        <div class="kpi-top"><div class="icon">💰</div><span class="muted">원금 기준</span></div>
+        <div class="kpi-top"><div class="icon">💰</div><span class="muted">원금 기준<br>(2026.05.06)</span></div>
         <div class="kpi-label">입금금액</div>
         <div class="kpi-value">17,505,594원</div>
       </div>
@@ -1234,6 +1236,7 @@
     function updateDonutDetail(key) {
       const item = donutData[key];
       if (!item) return;
+
       selectedIndex = keys.indexOf(key);
 
       document.getElementById("detailName").textContent = item.name;
@@ -1245,8 +1248,9 @@
 
       const pnlEl = document.getElementById("detailPnl");
       const returnEl = document.getElementById("detailReturn");
-      pnlEl.className = item.tone === "gain" ? "gain" : item.tone === "loss" ? "loss" : "";
-      returnEl.className = item.tone === "gain" ? "gain" : item.tone === "loss" ? "loss" : "";
+      const toneClass = item.tone === "gain" ? "gain" : item.tone === "loss" ? "loss" : "";
+      pnlEl.className = toneClass;
+      returnEl.className = toneClass;
 
       document.querySelectorAll(".legend-row").forEach(row => {
         row.classList.toggle("active", row.dataset.key === key);
@@ -1262,7 +1266,7 @@
     });
 
     document.querySelectorAll(".donut-segment").forEach(segment => {
-      segment.addEventListener("click", (event) => {
+      segment.addEventListener("click", event => {
         event.stopPropagation();
         updateDonutDetail(segment.dataset.key);
       });
@@ -1272,7 +1276,8 @@
       selectedIndex = (selectedIndex + 1) % keys.length;
       updateDonutDetail(keys[selectedIndex]);
     });
-  const statusMessages = [
+
+    const statusMessages = [
       "일단 가즈아ㅏㅏㅏ 🔥🔥🔥🚀🚀🚀📈📈😇",
       "국장 믿습니다 🇰🇷📈🔥",
       "분산은 했는데 같이 빠지는 중 😇",
@@ -1288,6 +1293,7 @@
     let currentStatus = 0;
 
     function rotateStatusMessage() {
+      if (!statusBox || !statusMessage) return;
       currentStatus = (currentStatus + 1) % statusMessages.length;
       statusMessage.textContent = statusMessages[currentStatus];
       statusBox.style.transform = "scale(0.985)";
@@ -1297,6 +1303,6 @@
     }
 
     statusBox?.addEventListener("click", rotateStatusMessage);
-</script>
+  </script>
 </body>
 </html>
