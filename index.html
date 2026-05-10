@@ -489,6 +489,82 @@
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.14), 0 14px 34px rgba(34,211,238,0.18);
     }
 
+    .comment-form {
+      display: grid;
+      grid-template-columns: 120px 1fr auto;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .comment-form input {
+      width: 100%;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(0,0,0,0.22);
+      color: #f4f4f5;
+      border-radius: 14px;
+      padding: 12px 13px;
+      font-size: 14px;
+      outline: none;
+    }
+
+    .comment-form input:focus {
+      border-color: rgba(103,232,249,0.50);
+      box-shadow: 0 0 0 3px rgba(34,211,238,0.10);
+    }
+
+    .comment-form button {
+      border: 1px solid rgba(103,232,249,0.35);
+      background: linear-gradient(180deg, rgba(34,211,238,0.20), rgba(34,211,238,0.08));
+      color: #a5f3fc;
+      border-radius: 14px;
+      padding: 0 16px;
+      font-weight: 900;
+      cursor: pointer;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.14), 0 8px 22px rgba(34,211,238,0.14);
+    }
+
+    .comment-meta {
+      margin-top: 10px;
+      color: #a1a1aa;
+      font-size: 12px;
+    }
+
+    .comment-history {
+      margin-top: 16px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .comment-history-title {
+      color: #a1a1aa;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .comment-history-item {
+      padding: 10px 12px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.045);
+      color: #d4d4d8;
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .comment-history-item strong {
+      color: #67e8f9;
+      margin-right: 6px;
+    }
+
+    @media (max-width: 760px) {
+      .comment-form {
+        grid-template-columns: 1fr;
+      }
+
+      .comment-form button {
+        padding: 12px 16px;
+      }
+    }
+
     .memo-grid {
       margin-top: 18px;
       display: grid;
@@ -1126,9 +1202,18 @@
     <section class="bottom-grid">
       <div class="panel">
         <div class="status-title-row"><h2>💬 오늘의 한줄평</h2><span class="tap-badge">한줄평 변경</span></div>
-        <div class="status-box" id="statusBox" style="cursor:pointer; transition:transform 0.18s ease, box-shadow 0.18s ease;">
-          <span id="statusMessage">일단 가즈아ㅏㅏㅏ 🔥🔥🔥🚀🚀🚀📈📈😇</span>
-        </div>
+        <div class="status-box" id="statusBox">
+        <span id="statusMessage">일단 가즈아ㅏㅏㅏ 🔥🔥🔥🚀🚀🚀📈📈😇</span>
+      </div>
+      <div class="comment-meta" id="commentMeta">공유 한줄평을 불러오는 중...</div>
+      <div class="comment-form">
+        <input id="commentAuthor" maxlength="10" placeholder="닉네임 10자 이내" />
+        <input id="commentInput" maxlength="40" placeholder="한줄평 40자 이내" />
+        <button id="commentSubmit" type="button">업데이트</button>
+      </div>
+      <div class="comment-history" id="commentHistory">
+        <div class="comment-history-title">최근 한줄평</div>
+      </div>
       </div>
 
       <div class="panel">
@@ -1277,6 +1362,8 @@
       updateDonutDetail(keys[selectedIndex]);
     });
 
+    const COMMENT_API_URL = "https://script.google.com/macros/s/AKfycbxYXyr27dN-8l00hi7AI5-1bK7UTKZyqOXNtADv1okM5B0kOEN3OJk6jWo-YEnUiQhi/exec";
+
     const statusMessages = [
       "일단 가즈아ㅏㅏㅏ 🔥🔥🔥🚀🚀🚀📈📈😇",
       "국장 믿습니다 🇰🇷📈🔥",
@@ -1290,7 +1377,15 @@
 
     const statusBox = document.getElementById("statusBox");
     const statusMessage = document.getElementById("statusMessage");
+    const commentMeta = document.getElementById("commentMeta");
+    const commentAuthor = document.getElementById("commentAuthor");
+    const commentInput = document.getElementById("commentInput");
+    const commentSubmit = document.getElementById("commentSubmit");
+    const commentHistory = document.getElementById("commentHistory");
     let currentStatus = 0;
+
+    const savedAuthor = localStorage.getItem("dnwCommentAuthor");
+    if (savedAuthor && commentAuthor) commentAuthor.value = savedAuthor;
 
     function rotateStatusMessage() {
       if (!statusBox || !statusMessage) return;
@@ -1302,7 +1397,93 @@
       }, 120);
     }
 
+    async function fetchComments() {
+      try {
+        const response = await fetch(COMMENT_API_URL + "?action=get&ts=" + Date.now());
+        const data = await response.json();
+        renderComments(data);
+      } catch (error) {
+        if (commentMeta) commentMeta.textContent = "공유 한줄평을 불러오지 못했습니다.";
+      }
+    }
+
+    function renderComments(data) {
+      if (!data || !data.ok) return;
+
+      if (data.latest && statusMessage) {
+        statusMessage.textContent = data.latest.message || statusMessage.textContent;
+        const author = data.latest.author || "DNW";
+        const updatedAt = data.latest.updatedAt || "";
+        if (commentMeta) commentMeta.textContent = updatedAt ? `마지막 수정: ${author} · ${updatedAt}` : `작성자: ${author}`;
+      }
+
+      if (commentHistory) {
+        const history = Array.isArray(data.history) ? data.history.slice(0, 5) : [];
+        commentHistory.innerHTML = '<div class="comment-history-title">최근 한줄평</div>' + history.map(item => {
+          const author = item.author || "DNW";
+          const message = item.message || "";
+          const time = item.updatedAt ? `<span style="color:#71717a;"> · ${item.updatedAt}</span>` : "";
+          return `<div class="comment-history-item"><strong>${author}</strong>${message}${time}</div>`;
+        }).join("");
+      }
+    }
+
+    async function submitComment() {
+      const author = (commentAuthor?.value || "").trim();
+      const message = (commentInput?.value || "").trim();
+
+      if (!author) {
+        alert("닉네임을 입력해주세요.");
+        return;
+      }
+      if (author.length > 10) {
+        alert("닉네임은 최대 10자까지 가능합니다.");
+        return;
+      }
+      if (!message) {
+        alert("한줄평을 입력해주세요.");
+        return;
+      }
+      if (message.length > 40) {
+        alert("한줄평은 최대 40자까지 가능합니다.");
+        return;
+      }
+
+      localStorage.setItem("dnwCommentAuthor", author);
+      commentSubmit.disabled = true;
+      commentSubmit.textContent = "반영중";
+
+      try {
+        const url = COMMENT_API_URL
+          + "?action=update"
+          + "&author=" + encodeURIComponent(author)
+          + "&message=" + encodeURIComponent(message)
+          + "&ts=" + Date.now();
+        const response = await fetch(url);
+        const data = await response.json();
+        if (!data.ok) {
+          alert(data.message || "저장에 실패했습니다.");
+        } else {
+          commentInput.value = "";
+          renderComments(data);
+        }
+      } catch (error) {
+        alert("저장 중 오류가 발생했습니다.");
+      } finally {
+        commentSubmit.disabled = false;
+        commentSubmit.textContent = "업데이트";
+      }
+    }
+
     statusBox?.addEventListener("click", rotateStatusMessage);
+    commentSubmit?.addEventListener("click", submitComment);
+
+    const isLiveGithubPage = location.hostname.includes("github.io");
+    if (isLiveGithubPage) {
+      fetchComments();
+    } else if (commentMeta) {
+      commentMeta.textContent = "미리보기에서는 공유 한줄평 자동 불러오기를 잠시 꺼둠 · GitHub 배포본에서 자동 반영";
+    }
   </script>
 </body>
 </html>
