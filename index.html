@@ -595,6 +595,7 @@
       color: #71717a;
       font-size: 12px;
       line-height: 1.5;
+      white-space: pre-line;
     }
 
     @media (max-width: 980px) {
@@ -970,36 +971,36 @@
   <main class="dashboard">
     <header class="header">
       <div>
-        <div class="badge">📊 DNW 회비 ETF 운용 리포트</div>
-        <h1>ETF 포트폴리오 대시보드</h1>
-        <p class="subtitle">AI 전력 · AI 반도체 · 증권 · 2차전지 · K방산 동일비중 포트</p>
+        <div class="badge" id="reportBadge">📊 DNW 회비 ETF 운용 리포트</div>
+        <h1 id="reportTitle">ETF 포트폴리오 대시보드</h1>
+        <p class="subtitle" id="reportSubtitle">AI 전력 · AI 반도체 · 증권 · 2차전지 · K방산 동일비중 포트</p>
       </div>
       <div class="date-card">
         <span class="muted">기준일</span>
-        <strong>2026.05.11 15:33 종가 기준</strong>
+        <strong id="reportAsOf">2026.05.11 15:33 종가 기준</strong>
       </div>
     </header>
 
     <section class="kpi-grid">
       <div class="kpi-card">
-        <div class="kpi-top"><div class="icon">💰</div><span class="muted">원금 기준<br>(2026.05.06)</span></div>
+        <div class="kpi-top"><div class="icon">💰</div><span class="muted" id="depositBasis">원금 기준<br>(2026.05.06)</span></div>
         <div class="kpi-label">입금금액</div>
-        <div class="kpi-value">17,505,594원</div>
+        <div class="kpi-value" id="depositAmount">17,505,594원</div>
       </div>
       <div class="kpi-card">
         <div class="kpi-top"><div class="icon">📊</div><span class="muted">주식 평가</span></div>
         <div class="kpi-label">총 평가금액</div>
-        <div class="kpi-value">17,246,260원</div>
+        <div class="kpi-value" id="stockEvaluationAmount">17,246,260원</div>
       </div>
       <div class="kpi-card">
-        <div class="kpi-top"><div class="icon">📉</div><span class="muted">-1.46%</span></div>
+        <div class="kpi-top"><div class="icon">📉</div><span class="muted" id="accountReturnRate">-1.46%</span></div>
         <div class="kpi-label">총 수익금액</div>
-        <div class="kpi-value loss">-255,940원</div>
+        <div class="kpi-value loss" id="accountProfitAmount">-255,940원</div>
       </div>
       <div class="kpi-card">
-        <div class="kpi-top"><div class="icon">🔥</div><span class="muted">0.03%</span></div>
+        <div class="kpi-top"><div class="icon">🔥</div><span class="muted" id="cashWeight">0.03%</span></div>
         <div class="kpi-label">예수금</div>
-        <div class="kpi-value">5,964원</div>
+        <div class="kpi-value" id="cashAmount">5,964원</div>
       </div>
     </section>
 
@@ -1011,7 +1012,7 @@
         </div>
         <div class="mini-box" style="padding:14px 20px;">
           <span class="muted">현재 총 자산</span>
-          <strong style="font-size:36px; color:#67e8f9; margin-top:6px; display:block;">17,249,654원</strong>
+          <strong id="totalAssetAmount" style="font-size:36px; color:#67e8f9; margin-top:6px; display:block;">17,249,654원</strong>
         </div>
       </div>
     </section>
@@ -1021,26 +1022,26 @@
       <div class="memo-grid" style="margin-top:20px;">
         <div class="memo-card">
           <div class="key">참여 인원</div>
-          <div class="val">9명</div>
+          <div class="val" id="capitalMembers">9명</div>
         </div>
         <div class="memo-card">
           <div class="key">창립 출자금</div>
-          <div class="val">1인당 100만원</div>
+          <div class="val" id="capitalFounding">1인당 100만원</div>
         </div>
         <div class="memo-card">
           <div class="key">월 정기 불입금</div>
-          <div class="val">1인당 5만원</div>
+          <div class="val" id="capitalMonthly">1인당 5만원</div>
         </div>
         <div class="memo-card">
           <div class="key">납부 회차</div>
-          <div class="val">11회차 완료</div>
+          <div class="val" id="capitalRounds">11회차 완료</div>
         </div>
         <div class="memo-card" style="grid-column: span 2; border:2px solid rgba(103,232,249,0.35); background:linear-gradient(180deg, rgba(34,211,238,0.08), rgba(255,255,255,0.05));">
           <div class="key">총 자본금</div>
-          <div class="val" style="font-size:32px; color:#67e8f9; margin-top:8px;">13,950,000원</div>
+          <div class="val" id="capitalTotal" style="font-size:32px; color:#67e8f9; margin-top:8px;">13,950,000원</div>
           <div style="margin-top:12px; font-size:15px; color:#d4d4d8; line-height:1.6;">
-            자본금 대비 수익금 <span style="color:#f9a8d4; font-weight:800;">+3,302,224원</span><br>
-            자본금 대비 수익률 <span style="color:#f9a8d4; font-weight:800;">+23.67%</span>
+            자본금 대비 수익금 <span id="capitalProfit" style="color:#f9a8d4; font-weight:800;">+3,302,224원</span><br>
+            자본금 대비 수익률 <span id="capitalReturn" style="color:#f9a8d4; font-weight:800;">+23.67%</span>
           </div>
         </div>
       </div>
@@ -1055,7 +1056,7 @@
           </div>
           <div class="mini-box">
             <span class="muted">주식 비중</span>
-            <strong>99.97%</strong>
+            <strong id="stockWeight">99.97%</strong>
           </div>
         </div>
 
@@ -1075,7 +1076,7 @@
             <div class="donut-click-hint">원 또는 항목 눌러 상세보기</div>
           </div>
           <div>
-            <div class="donut-legend">
+            <div class="donut-legend" id="donutLegend">
               <div class="legend-row active" data-key="semi"><span class="legend-dot" style="background:#22d3ee;"></span><span>SOL AI반도체TOP2플러스</span><strong>22.03%</strong></div>
               <div class="legend-row" data-key="power"><span class="legend-dot" style="background:#60a5fa;"></span><span>TIGER 코리아AI전력기기TOP3</span><strong>20.58%</strong></div>
               <div class="legend-row" data-key="battery"><span class="legend-dot" style="background:#a78bfa;"></span><span>TIGER 2차전지TOP10</span><strong>19.82%</strong></div>
@@ -1107,11 +1108,11 @@
           </div>
           <div class="mini-box">
             <span class="muted">계좌기준</span>
-            <strong class="loss">-255,940원</strong>
+            <strong class="loss" id="pnlTotal">-255,940원</strong>
           </div>
         </div>
 
-        <div class="pnl-chart">
+        <div class="pnl-chart" id="pnlChart">
           <div class="pnl-row">
             <span>AI반도체</span>
             <div class="pnl-bar-track"><span class="pnl-mid"></span><span class="pnl-bar positive" style="width: 45.2%"></span></div>
@@ -1149,7 +1150,7 @@
         </div>
         <div class="mini-box">
           <span class="muted">계좌 표시 총손익</span>
-          <strong class="loss">-255,940원 / -1.46%</strong>
+          <strong class="loss" id="tableTotalPnl">-255,940원 / -1.46%</strong>
         </div>
       </div>
 
@@ -1168,7 +1169,7 @@
               <th>비중</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody id="holdingsTableBody">
             <tr>
               <td>SOL AI반도체TOP2플러스</td>
               <td>210</td><td>16,810</td><td>18,100</td><td>3,530,150</td><td>3,801,000</td><td class="gain">+270,850</td><td class="gain">+7.67%</td><td class="cyan">22.03%</td>
@@ -1203,7 +1204,7 @@
         </table>
       </div>
 
-      <div class="mobile-holdings">
+      <div class="mobile-holdings" id="mobileHoldings">
         <div class="holding-card">
           <div class="holding-head"><div class="holding-title">SOL AI반도체TOP2플러스</div><div class="holding-weight">22.03%</div></div>
           <div class="holding-grid">
@@ -1266,7 +1267,7 @@
           </div>
         </div>
       </div>
-      <p class="note">※ 예수금은 국내주식 결제(T+2) 및 ETF 분배금·수수료 반영에 따라 장중·장마감 후 소폭 변동될 수 있음. 현재 총자산 기준: 평가금액 17,246,260원 + 예수금 5,964원 = 17,249,654원.
+      <p class="note" id="reportNote">※ 예수금은 국내주식 결제(T+2) 및 ETF 분배금·수수료 반영에 따라 장중·장마감 후 소폭 변동될 수 있음. 현재 총자산 기준: 평가금액 17,246,260원 + 예수금 5,964원 = 17,249,654원.
 ※ 수익률은 실제 계좌 기준 평가수익률(보유수익률) 기준으로 표기. 개별 ETF 평가손익 합계는 -250,770원이며, 계좌 표시 총손익 -255,940원과의 차이 5,170원은 수수료·세금·증권사 정산 반영분.</p>
     </section>
 
@@ -1289,7 +1290,7 @@
 
       <div class="panel">
         <h2>운용 메모</h2>
-        <div class="memo-grid">
+        <div class="memo-grid" id="memoGrid">
           <div class="memo-card"><div class="key">운용 방식</div><div class="val">5개 ETF 동일비중</div></div>
           <div class="memo-card"><div class="key">포트 성격</div><div class="val">공격형 성장 ETF 포트</div></div>
           <div class="memo-card"><div class="key">핵심 키워드</div><div class="val">AI / 전력 / 유동성 / 정책수혜</div></div>
@@ -1301,65 +1302,285 @@
     
   </main>
 <script>
-    const donutData = {
-      semi: {
-        name: "SOL AI반도체TOP2플러스",
-        weight: "22.03%",
-        value: "3,801,000",
-        pnl: "+270,850",
-        returnRate: "+7.67%",
-        tone: "gain",
-        comment: "AI 서버·HBM 수요 기대감으로 포트 내 핵심 성장축 역할."
+    const DEFAULT_DASHBOARD_DATA = {
+      report: {
+        badge: "📊 DNW 회비 ETF 운용 리포트",
+        title: "ETF 포트폴리오 대시보드",
+        subtitle: "AI 전력 · AI 반도체 · 증권 · 2차전지 · K방산 동일비중 포트",
+        asOf: "2026.05.11 15:33 종가 기준",
+        initialDepositDate: "2026.05.06",
+        depositAmount: 17505594,
+        accountProfitAmount: -255940,
+        accountReturnRate: -1.46,
+        accountStockEvaluationAmount: 17246260,
+        totalAssetAmount: 17249654,
+        capitalProfitAmount: 3302224,
+        capitalReturnRate: 23.67,
+        cash: 5964,
+        note: "※ 예수금은 국내주식 결제(T+2) 및 ETF 분배금·수수료 반영에 따라 장중·장마감 후 소폭 변동될 수 있음. 현재 총자산 기준: 평가금액 17,246,260원 + 예수금 5,964원 = 17,249,654원.\n※ 수익률은 실제 계좌 기준 평가수익률(보유수익률) 기준으로 표기. 개별 ETF 평가손익 합계는 -250,770원이며, 계좌 표시 총손익 -255,940원과의 차이 5,170원은 수수료·세금·증권사 정산 반영분."
       },
-      securities: {
-        name: "KODEX 증권",
-        weight: "19.02%",
-        value: "3,281,250",
-        pnl: "-236,250",
-        returnRate: "-6.72%",
-        tone: "loss",
-        comment: "유동성 기대감은 살아있지만 단기 조정폭이 확대. 다음 반등 때 회복 탄력 확인 필요."
+      capital: {
+        members: 9,
+        foundingContributionPerPerson: 1000000,
+        monthlyContributionPerPerson: 50000,
+        paidRounds: 11,
+        totalCapital: 13950000
       },
-      power: {
-        name: "TIGER 코리아AI전력기기TOP3",
-        weight: "20.58%",
-        value: "3,551,350",
-        pnl: "+55,000",
-        returnRate: "+1.57%",
-        tone: "gain",
-        comment: "AI 전력 인프라 기대감은 유지. 장중 흔들림은 있었지만 수익권 방어에 성공."
-      },
-      battery: {
-        name: "TIGER 2차전지TOP10",
-        weight: "19.82%",
-        value: "3,419,910",
-        pnl: "-62,805",
-        returnRate: "-1.80%",
-        tone: "loss",
-        comment: "아직 방향성은 약하지만 낙폭은 제한적. 반등 전환 여부를 지켜볼 구간."
-      },
-      defense: {
-        name: "PLUS K방산",
-        weight: "18.50%",
-        value: "3,192,750",
-        pnl: "-277,565",
-        returnRate: "-8.00%",
-        tone: "loss",
-        comment: "오늘도 가장 무거운 구간. 다만 방산 테마 자체보다 단기 수급 부담을 먼저 확인할 필요."
-      },
-      cash: {
-        name: "예수금",
-        weight: "0.03%",
-        value: "5,964",
-        pnl: "-",
-        returnRate: "-",
-        tone: "neutral",
-        comment: "예수금 비중은 미미. 현재 포트는 사실상 ETF 풀매수 상태."
-      }
+      holdings: [
+        { key: "semi", name: "SOL AI반도체TOP2플러스", shortName: "AI반도체", quantity: 210, buyPrice: 16810, currentPrice: 18100, purchaseAmount: 3530150, evaluationAmount: 3801000, profitAmount: 270850, returnRate: 7.67, color: "#22d3ee", comment: "AI 서버·HBM 수요 기대감으로 포트 내 핵심 성장축 역할." },
+        { key: "power", name: "TIGER 코리아AI전력기기TOP3", shortName: "AI전력", quantity: 110, buyPrice: 31785, currentPrice: 32285, purchaseAmount: 3496350, evaluationAmount: 3551350, profitAmount: 55000, returnRate: 1.57, color: "#60a5fa", comment: "AI 전력 인프라 기대감은 유지. 장중 흔들림은 있었지만 수익권 방어에 성공." },
+        { key: "battery", name: "TIGER 2차전지TOP10", shortName: "2차전지", quantity: 237, buyPrice: 14695, currentPrice: 14430, purchaseAmount: 3482715, evaluationAmount: 3419910, profitAmount: -62805, returnRate: -1.80, color: "#a78bfa", comment: "아직 방향성은 약하지만 낙폭은 제한적. 반등 전환 여부를 지켜볼 구간." },
+        { key: "securities", name: "KODEX 증권", shortName: "증권", quantity: 105, buyPrice: 33500, currentPrice: 31250, purchaseAmount: 3517500, evaluationAmount: 3281250, profitAmount: -236250, returnRate: -6.72, color: "#38bdf8", comment: "유동성 기대감은 살아있지만 단기 조정폭이 확대. 다음 반등 때 회복 탄력 확인 필요." },
+        { key: "defense", name: "PLUS K방산", shortName: "K방산", quantity: 43, buyPrice: 80705, currentPrice: 74250, purchaseAmount: 3470315, evaluationAmount: 3192750, profitAmount: -277565, returnRate: -8.00, color: "#f472b6", comment: "오늘도 가장 무거운 구간. 다만 방산 테마 자체보다 단기 수급 부담을 먼저 확인할 필요." }
+      ],
+      memo: [
+        { key: "운용 방식", value: "5개 ETF 동일비중" },
+        { key: "포트 성격", value: "공격형 성장 ETF 포트" },
+        { key: "핵심 키워드", value: "AI / 전력 / 유동성 / 정책수혜" },
+        { key: "체크포인트", value: "AI 주도 지속 + 방산 낙폭 안정화" }
+      ],
+      statusMessages: [
+        "장마감 완료. AI가 버티고 방산이 숙제 남김 😇",
+        "AI반도체가 오늘도 에이스 역할 완료 🧠🔥",
+        "전력은 버티고, 방산은 다음 턴 준비 중 ⚡🔫",
+        "아직 마이너스지만 손실폭은 관리 중 😇",
+        "오늘의 결론: AI는 효자, 방산은 숙제 😂",
+        "동일비중 포트답게 흔들려도 균형은 유지 중 ⚖️",
+        "K방산아 이제 슬슬 기상하자 🔫",
+        "국장 흐름은 좋다. 우리 포트도 천천히 따라가자 🚀"
+      ]
     };
 
-    const keys = ["semi", "power", "battery", "securities", "defense", "cash"];
+    let donutData = {};
+    let keys = [];
     let selectedIndex = 0;
+    let statusMessages = DEFAULT_DASHBOARD_DATA.statusMessages;
+
+    const number = value => Number(value || 0);
+    const formatNumber = value => Math.round(number(value)).toLocaleString("ko-KR");
+    const formatWon = value => `${formatNumber(value)}원`;
+    const formatSignedNumber = value => `${number(value) > 0 ? "+" : ""}${formatNumber(value)}`;
+    const formatSignedWon = value => `${formatSignedNumber(value)}원`;
+    const formatPercent = value => `${number(value).toFixed(2)}%`;
+    const formatSignedPercent = value => `${number(value) > 0 ? "+" : ""}${number(value).toFixed(2)}%`;
+    const toneClass = value => number(value) > 0 ? "gain" : number(value) < 0 ? "loss" : "";
+    const safeKey = (item, index) => item.key || `holding-${index}`;
+    const setText = (id, value) => {
+      const element = document.getElementById(id);
+      if (element) element.textContent = value;
+    };
+
+    function normalizedHoldings(data) {
+      return (data.holdings || []).map((item, index) => {
+        const quantity = number(item.quantity);
+        const buyPrice = number(item.buyPrice);
+        const currentPrice = number(item.currentPrice);
+        const purchaseAmount = item.purchaseAmount == null ? quantity * buyPrice : number(item.purchaseAmount);
+        const evaluationAmount = item.evaluationAmount == null ? quantity * currentPrice : number(item.evaluationAmount);
+        const profitAmount = item.profitAmount == null ? evaluationAmount - purchaseAmount : number(item.profitAmount);
+        const returnRate = item.returnRate == null ? (purchaseAmount ? profitAmount / purchaseAmount * 100 : 0) : number(item.returnRate);
+        return {
+          ...item,
+          key: safeKey(item, index),
+          shortName: item.shortName || item.theme || item.name,
+          quantity,
+          buyPrice,
+          currentPrice,
+          purchaseAmount,
+          evaluationAmount,
+          profitAmount,
+          returnRate,
+          color: item.color || ["#22d3ee", "#60a5fa", "#a78bfa", "#38bdf8", "#f472b6"][index % 5]
+        };
+      });
+    }
+
+    function buildSummary(data, holdings) {
+      const report = data.report || {};
+      const cash = number(report.cash ?? data.cash);
+      const holdingEvaluation = holdings.reduce((sum, item) => sum + item.evaluationAmount, 0);
+      const stockEvaluation = report.accountStockEvaluationAmount == null ? holdingEvaluation : number(report.accountStockEvaluationAmount);
+      const tableEvaluation = holdingEvaluation + cash;
+      const totalAssets = report.totalAssetAmount == null ? stockEvaluation + cash : number(report.totalAssetAmount);
+      const allocationBasis = report.allocationBasisAmount == null ? tableEvaluation : number(report.allocationBasisAmount);
+      const purchaseAmount = holdings.reduce((sum, item) => sum + item.purchaseAmount, 0);
+      const holdingsProfit = holdings.reduce((sum, item) => sum + item.profitAmount, 0);
+      const accountProfit = report.accountProfitAmount == null ? holdingsProfit : number(report.accountProfitAmount);
+      const accountReturn = report.accountReturnRate == null ? (report.depositAmount ? accountProfit / number(report.depositAmount) * 100 : 0) : number(report.accountReturnRate);
+      return { cash, stockEvaluation, holdingEvaluation, tableEvaluation, totalAssets, allocationBasis, purchaseAmount, holdingsProfit, accountProfit, accountReturn };
+    }
+
+    function renderDashboard(data) {
+      const report = data.report || {};
+      const capital = data.capital || {};
+      const holdings = normalizedHoldings(data);
+      const summary = buildSummary(data, holdings);
+      const totalWeightBasis = summary.allocationBasis || 1;
+      const stockWeight = summary.allocationBasis ? summary.stockEvaluation / summary.allocationBasis * 100 : 0;
+      const cashWeight = summary.allocationBasis ? summary.cash / summary.allocationBasis * 100 : 0;
+
+      statusMessages = Array.isArray(data.statusMessages) && data.statusMessages.length ? data.statusMessages : statusMessages;
+      setText("reportBadge", report.badge || "📊 DNW 회비 ETF 운용 리포트");
+      setText("reportTitle", report.title || "ETF 포트폴리오 대시보드");
+      setText("reportSubtitle", report.subtitle || holdings.map(item => item.theme || item.shortName).join(" · "));
+      setText("reportAsOf", report.asOf || "");
+      const depositBasis = document.getElementById("depositBasis");
+      if (depositBasis) depositBasis.innerHTML = `원금 기준<br>(${report.initialDepositDate || "-"})`;
+      setText("depositAmount", formatWon(report.depositAmount));
+      setText("stockEvaluationAmount", formatWon(summary.stockEvaluation));
+      setText("accountReturnRate", formatPercent(summary.accountReturn));
+      setText("accountProfitAmount", formatSignedWon(summary.accountProfit));
+      setText("cashWeight", formatPercent(cashWeight));
+      setText("cashAmount", formatWon(summary.cash));
+      setText("totalAssetAmount", formatWon(summary.totalAssets));
+      setText("stockWeight", formatPercent(stockWeight));
+      setText("pnlTotal", formatSignedWon(summary.accountProfit));
+      setText("tableTotalPnl", `${formatSignedWon(summary.accountProfit)} / ${formatSignedPercent(summary.accountReturn)}`);
+      setText("reportNote", report.note || "");
+
+      document.getElementById("accountProfitAmount")?.classList.toggle("gain", summary.accountProfit > 0);
+      document.getElementById("accountProfitAmount")?.classList.toggle("loss", summary.accountProfit < 0);
+      document.getElementById("pnlTotal")?.classList.toggle("gain", summary.accountProfit > 0);
+      document.getElementById("pnlTotal")?.classList.toggle("loss", summary.accountProfit < 0);
+      document.getElementById("tableTotalPnl")?.classList.toggle("gain", summary.accountProfit > 0);
+      document.getElementById("tableTotalPnl")?.classList.toggle("loss", summary.accountProfit < 0);
+
+      const capitalProfit = report.capitalProfitAmount == null ? summary.totalAssets - number(capital.totalCapital) : number(report.capitalProfitAmount);
+      const capitalReturn = report.capitalReturnRate == null ? (capital.totalCapital ? capitalProfit / number(capital.totalCapital) * 100 : 0) : number(report.capitalReturnRate);
+      setText("capitalMembers", `${formatNumber(capital.members)}명`);
+      setText("capitalFounding", `1인당 ${formatNumber(number(capital.foundingContributionPerPerson) / 10000)}만원`);
+      setText("capitalMonthly", `1인당 ${formatNumber(number(capital.monthlyContributionPerPerson) / 10000)}만원`);
+      setText("capitalRounds", `${formatNumber(capital.paidRounds)}회차 완료`);
+      setText("capitalTotal", formatWon(capital.totalCapital));
+      setText("capitalProfit", formatSignedWon(capitalProfit));
+      setText("capitalReturn", formatSignedPercent(capitalReturn));
+
+      renderDonut(data, holdings, summary, totalWeightBasis, cashWeight);
+      renderPnlChart(holdings);
+      renderHoldingsTable(holdings, summary, totalWeightBasis, summary.accountReturn);
+      renderMobileHoldings(holdings, summary, totalWeightBasis, summary.accountReturn);
+      renderMemo(data.memo);
+      if (statusMessages[0] && statusMessage) statusMessage.textContent = statusMessages[0];
+      updateDonutDetail(keys[0]);
+    }
+
+    function renderDonut(data, holdings, summary, totalWeightBasis, cashWeight) {
+      const donutItems = [
+        ...holdings.map(item => ({ ...item, weight: item.evaluationAmount / totalWeightBasis * 100 })),
+        { key: "cash", name: "예수금", shortName: "예수금", evaluationAmount: summary.cash, profitAmount: null, returnRate: null, color: "#4b5563", comment: "예수금 비중은 미미. 현재 포트는 사실상 ETF 풀매수 상태.", weight: cashWeight }
+      ];
+      donutData = Object.fromEntries(donutItems.map(item => [item.key, item]));
+      keys = donutItems.map(item => item.key);
+
+      const svg = document.querySelector("#donutChart svg");
+      if (svg) {
+        let offset = 0;
+        svg.innerHTML = '<circle class="donut-segment-bg" cx="130" cy="130" r="90"></circle>' + donutItems.map((item, index) => {
+          const dash = Math.max(item.weight, 0.03);
+          const segment = `<circle class="donut-segment${index === 0 ? " active" : ""}" data-key="${item.key}" cx="130" cy="130" r="90" pathLength="100" stroke="${item.color}" stroke-dasharray="${dash.toFixed(2)} ${(100 - dash).toFixed(2)}" stroke-dashoffset="${(-offset).toFixed(2)}"></circle>`;
+          offset += item.weight;
+          return segment;
+        }).join("");
+      }
+
+      const legend = document.getElementById("donutLegend");
+      if (legend) {
+        legend.innerHTML = donutItems.map((item, index) => `
+          <div class="legend-row${index === 0 ? " active" : ""}" data-key="${item.key}">
+            <span class="legend-dot" style="background:${item.color};"></span>
+            <span>${item.name}</span>
+            <strong>${formatPercent(item.weight)}</strong>
+          </div>
+        `).join("");
+      }
+
+      document.querySelectorAll(".legend-row").forEach(row => {
+        row.addEventListener("click", () => updateDonutDetail(row.dataset.key));
+      });
+      document.querySelectorAll(".donut-segment").forEach(segment => {
+        segment.addEventListener("click", event => {
+          event.stopPropagation();
+          updateDonutDetail(segment.dataset.key);
+        });
+      });
+    }
+
+    function renderPnlChart(holdings) {
+      const chart = document.getElementById("pnlChart");
+      if (!chart) return;
+      const maxAbs = Math.max(...holdings.map(item => Math.abs(item.profitAmount)), 1);
+      chart.innerHTML = holdings.map(item => {
+        const positive = item.profitAmount >= 0;
+        const width = Math.max(Math.abs(item.profitAmount) / maxAbs * 50, item.profitAmount === 0 ? 0 : 2);
+        return `
+          <div class="pnl-row">
+            <span>${item.shortName}</span>
+            <div class="pnl-bar-track"><span class="pnl-mid"></span><span class="pnl-bar ${positive ? "positive" : "negative"}" style="width: ${width.toFixed(1)}%"></span></div>
+            <span class="pnl-value ${toneClass(item.profitAmount)}">${formatSignedNumber(item.profitAmount)}</span>
+          </div>
+        `;
+      }).join("");
+    }
+
+    function renderHoldingsTable(holdings, summary, totalWeightBasis, accountReturn) {
+      const tbody = document.getElementById("holdingsTableBody");
+      if (!tbody) return;
+      tbody.innerHTML = holdings.map(item => {
+        const weight = item.evaluationAmount / totalWeightBasis * 100;
+        return `
+          <tr>
+            <td>${item.name}</td>
+            <td>${formatNumber(item.quantity)}</td><td>${formatNumber(item.buyPrice)}</td><td>${formatNumber(item.currentPrice)}</td><td>${formatNumber(item.purchaseAmount)}</td><td>${formatNumber(item.evaluationAmount)}</td><td class="${toneClass(item.profitAmount)}">${formatSignedNumber(item.profitAmount)}</td><td class="${toneClass(item.returnRate)}">${formatSignedPercent(item.returnRate)}</td><td class="cyan">${formatPercent(weight)}</td>
+          </tr>
+        `;
+      }).join("") + `
+        <tr>
+          <td>예수금</td>
+          <td colspan="5">${formatWon(summary.cash)}</td>
+          <td>-</td><td>-</td><td class="cyan">${formatPercent(summary.cash / totalWeightBasis * 100)}</td>
+        </tr>
+        <tr class="total-row">
+          <td>합계</td>
+          <td></td><td></td><td></td><td>${formatNumber(summary.purchaseAmount)}</td><td>${formatNumber(summary.tableEvaluation)}</td><td class="${toneClass(summary.accountProfit)}">${formatSignedNumber(summary.accountProfit)}</td><td class="${toneClass(accountReturn)}">${formatSignedPercent(accountReturn)}</td><td class="cyan">100.00%</td>
+        </tr>
+      `;
+    }
+
+    function renderMobileHoldings(holdings, summary, totalWeightBasis, accountReturn) {
+      const mobile = document.getElementById("mobileHoldings");
+      if (!mobile) return;
+      mobile.innerHTML = holdings.map(item => {
+        const weight = item.evaluationAmount / totalWeightBasis * 100;
+        return `
+          <div class="holding-card">
+            <div class="holding-head"><div class="holding-title">${item.name}</div><div class="holding-weight">${formatPercent(weight)}</div></div>
+            <div class="holding-grid">
+              <div class="holding-cell"><span>수량</span><strong>${formatNumber(item.quantity)}</strong></div>
+              <div class="holding-cell"><span>수익률</span><strong class="${toneClass(item.returnRate)}">${formatSignedPercent(item.returnRate)}</strong></div>
+              <div class="holding-cell"><span>수익금</span><strong class="${toneClass(item.profitAmount)}">${formatSignedNumber(item.profitAmount)}</strong></div>
+              <div class="holding-cell"><span>평가금액</span><strong>${formatNumber(item.evaluationAmount)}</strong></div>
+            </div>
+          </div>
+        `;
+      }).join("") + `
+        <div class="holding-card total-card">
+          <div class="holding-head"><div class="holding-title">합계</div><div class="holding-weight">100.00%</div></div>
+          <div class="holding-grid">
+            <div class="holding-cell"><span>총 매입</span><strong>${formatNumber(summary.purchaseAmount)}</strong></div>
+            <div class="holding-cell"><span>총 평가</span><strong>${formatNumber(summary.tableEvaluation)}</strong></div>
+            <div class="holding-cell"><span>총 수익금</span><strong class="${toneClass(summary.accountProfit)}">${formatSignedNumber(summary.accountProfit)}</strong></div>
+            <div class="holding-cell"><span>총 수익률</span><strong class="${toneClass(accountReturn)}">${formatSignedPercent(accountReturn)}</strong></div>
+            <div class="holding-cell"><span>예수금</span><strong>${formatNumber(summary.cash)}</strong></div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderMemo(memo) {
+      const grid = document.getElementById("memoGrid");
+      if (!grid || !Array.isArray(memo)) return;
+      grid.innerHTML = memo.map(item => `<div class="memo-card"><div class="key">${item.key}</div><div class="val">${item.value}</div></div>`).join("");
+    }
 
     function updateDonutDetail(key) {
       const item = donutData[key];
@@ -1368,17 +1589,16 @@
       selectedIndex = keys.indexOf(key);
 
       document.getElementById("detailName").textContent = item.name;
-      document.getElementById("detailWeight").textContent = item.weight;
+      document.getElementById("detailWeight").textContent = formatPercent(item.weight);
       document.getElementById("detailComment").textContent = item.comment;
-      document.getElementById("detailValue").textContent = item.value;
-      document.getElementById("detailPnl").textContent = item.pnl;
-      document.getElementById("detailReturn").textContent = item.returnRate;
+      document.getElementById("detailValue").textContent = formatNumber(item.evaluationAmount);
+      document.getElementById("detailPnl").textContent = item.profitAmount == null ? "-" : formatSignedNumber(item.profitAmount);
+      document.getElementById("detailReturn").textContent = item.returnRate == null ? "-" : formatSignedPercent(item.returnRate);
 
       const pnlEl = document.getElementById("detailPnl");
       const returnEl = document.getElementById("detailReturn");
-      const toneClass = item.tone === "gain" ? "gain" : item.tone === "loss" ? "loss" : "";
-      pnlEl.className = toneClass;
-      returnEl.className = toneClass;
+      pnlEl.className = toneClass(item.profitAmount);
+      returnEl.className = toneClass(item.returnRate);
 
       document.querySelectorAll(".legend-row").forEach(row => {
         row.classList.toggle("active", row.dataset.key === key);
@@ -1389,34 +1609,24 @@
       });
     }
 
-    document.querySelectorAll(".legend-row").forEach(row => {
-      row.addEventListener("click", () => updateDonutDetail(row.dataset.key));
-    });
-
-    document.querySelectorAll(".donut-segment").forEach(segment => {
-      segment.addEventListener("click", event => {
-        event.stopPropagation();
-        updateDonutDetail(segment.dataset.key);
-      });
-    });
-
     document.getElementById("donutChart")?.addEventListener("click", () => {
       selectedIndex = (selectedIndex + 1) % keys.length;
       updateDonutDetail(keys[selectedIndex]);
     });
 
-    const COMMENT_API_URL = "https://script.google.com/macros/s/AKfycbxYXyr27dN-8l00hi7AI5-1bK7UTKZyqOXNtADv1okM5B0kOEN3OJk6jWo-YEnUiQhi/exec";
+    async function loadDashboardData() {
+      try {
+        const response = await fetch("data.json?ts=" + Date.now(), { cache: "no-store" });
+        if (!response.ok) throw new Error("data.json load failed");
+        renderDashboard(await response.json());
+      } catch (error) {
+        renderDashboard(DEFAULT_DASHBOARD_DATA);
+      }
+    }
 
-    const statusMessages = [
-      "장마감 완료. AI가 버티고 방산이 숙제 남김 😇",
-      "AI반도체가 오늘도 에이스 역할 완료 🧠🔥",
-      "전력은 버티고, 방산은 다음 턴 준비 중 ⚡🔫",
-      "아직 마이너스지만 손실폭은 관리 중 😇",
-      "오늘의 결론: AI는 효자, 방산은 숙제 😂",
-      "동일비중 포트답게 흔들려도 균형은 유지 중 ⚖️",
-      "K방산아 이제 슬슬 기상하자 🔫",
-      "국장 흐름은 좋다. 우리 포트도 천천히 따라가자 🚀"
-    ];
+    loadDashboardData();
+
+    const COMMENT_API_URL = "https://script.google.com/macros/s/AKfycbxYXyr27dN-8l00hi7AI5-1bK7UTKZyqOXNtADv1okM5B0kOEN3OJk6jWo-YEnUiQhi/exec";
 
     const statusBox = document.getElementById("statusBox");
     const statusMessage = document.getElementById("statusMessage");
