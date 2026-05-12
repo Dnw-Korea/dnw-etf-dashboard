@@ -1302,59 +1302,133 @@
     
   </main>
 <script>
-    const DEFAULT_DASHBOARD_DATA = {
-      report: {
-        badge: "📊 DNW 회비 ETF 운용 리포트",
-        title: "ETF 포트폴리오 대시보드",
-        subtitle: "AI 전력 · AI 반도체 · 증권 · 2차전지 · K방산 동일비중 포트",
-        asOf: "2026.05.11 15:33 종가 기준",
-        initialDepositDate: "2026.05.06",
-        depositAmount: 17505594,
-        accountProfitAmount: -255940,
-        accountReturnRate: -1.46,
-        accountStockEvaluationAmount: 17246260,
-        totalAssetAmount: 17249654,
-        capitalProfitAmount: 3302224,
-        capitalReturnRate: 23.67,
-        cash: 5964,
-        note: "※ 예수금은 국내주식 결제(T+2) 및 ETF 분배금·수수료 반영에 따라 장중·장마감 후 소폭 변동될 수 있음. 현재 총자산 기준: 평가금액 17,246,260원 + 예수금 5,964원 = 17,249,654원.\n※ 수익률은 실제 계좌 기준 평가수익률(보유수익률) 기준으로 표기. 개별 ETF 평가손익 합계는 -250,770원이며, 계좌 표시 총손익 -255,940원과의 차이 5,170원은 수수료·세금·증권사 정산 반영분."
+    const DASHBOARD_DATA = {
+      "report": {
+            "badge": "📊 DNW 회비 ETF 운용 리포트",
+            "title": "ETF 포트폴리오 대시보드",
+            "subtitle": "AI 전력 · AI 반도체 · 증권 · 2차전지 · K방산 동일비중 포트",
+            "asOf": "2026.05.12 KRX 종가 기준",
+            "initialDepositDate": "2026.05.12",
+            "depositAmount": 17505594,
+            "accountProfitAmount": -950495,
+            "accountReturnRate": -5.43,
+            "accountStockEvaluationAmount": 16551585,
+            "totalAssetAmount": 16551585,
+            "capitalProfitAmount": 2601585,
+            "capitalReturnRate": 18.65,
+            "cash": 5964,
+            "note": "※ 기준일: 2026.05.12 KRX 종가 기준. 총평가금액 및 추정자산은 16,551,585원, 예수금은 5,964원입니다.\n※ 총손익은 계좌 기준 -950,495원, 총수익률은 -5.43%입니다. 개별 ETF 평가손익 합계와의 차이는 수수료·세금·증권사 정산 반영분으로 볼 수 있습니다."
       },
-      capital: {
-        members: 9,
-        foundingContributionPerPerson: 1000000,
-        monthlyContributionPerPerson: 50000,
-        paidRounds: 11,
-        totalCapital: 13950000
+      "capital": {
+            "members": 9,
+            "foundingContributionPerPerson": 1000000,
+            "monthlyContributionPerPerson": 50000,
+            "paidRounds": 11,
+            "totalCapital": 13950000
       },
-      holdings: [
-        { key: "semi", name: "SOL AI반도체TOP2플러스", shortName: "AI반도체", quantity: 210, buyPrice: 16810, currentPrice: 18100, purchaseAmount: 3530150, evaluationAmount: 3801000, profitAmount: 270850, returnRate: 7.67, color: "#22d3ee", comment: "AI 서버·HBM 수요 기대감으로 포트 내 핵심 성장축 역할." },
-        { key: "power", name: "TIGER 코리아AI전력기기TOP3", shortName: "AI전력", quantity: 110, buyPrice: 31785, currentPrice: 32285, purchaseAmount: 3496350, evaluationAmount: 3551350, profitAmount: 55000, returnRate: 1.57, color: "#60a5fa", comment: "AI 전력 인프라 기대감은 유지. 장중 흔들림은 있었지만 수익권 방어에 성공." },
-        { key: "battery", name: "TIGER 2차전지TOP10", shortName: "2차전지", quantity: 237, buyPrice: 14695, currentPrice: 14430, purchaseAmount: 3482715, evaluationAmount: 3419910, profitAmount: -62805, returnRate: -1.80, color: "#a78bfa", comment: "아직 방향성은 약하지만 낙폭은 제한적. 반등 전환 여부를 지켜볼 구간." },
-        { key: "securities", name: "KODEX 증권", shortName: "증권", quantity: 105, buyPrice: 33500, currentPrice: 31250, purchaseAmount: 3517500, evaluationAmount: 3281250, profitAmount: -236250, returnRate: -6.72, color: "#38bdf8", comment: "유동성 기대감은 살아있지만 단기 조정폭이 확대. 다음 반등 때 회복 탄력 확인 필요." },
-        { key: "defense", name: "PLUS K방산", shortName: "K방산", quantity: 43, buyPrice: 80705, currentPrice: 74250, purchaseAmount: 3470315, evaluationAmount: 3192750, profitAmount: -277565, returnRate: -8.00, color: "#f472b6", comment: "오늘도 가장 무거운 구간. 다만 방산 테마 자체보다 단기 수급 부담을 먼저 확인할 필요." }
+      "holdings": [
+            {
+                  "key": "power",
+                  "name": "TIGER 코리아AI전력기기TOP3",
+                  "shortName": "AI전력",
+                  "quantity": 110,
+                  "buyPrice": 31785,
+                  "currentPrice": 30820,
+                  "purchaseAmount": 3496350,
+                  "evaluationAmount": 3390200,
+                  "profitAmount": -106150,
+                  "returnRate": -3.04,
+                  "color": "#60a5fa",
+                  "comment": "전력기기 테마 조정에도 AI 인프라 장기 흐름은 유지 중."
+            },
+            {
+                  "key": "semi",
+                  "name": "SOL AI반도체TOP2플러스",
+                  "shortName": "AI반도체",
+                  "quantity": 210,
+                  "buyPrice": 16810,
+                  "currentPrice": 17945,
+                  "purchaseAmount": 3530150,
+                  "evaluationAmount": 3768450,
+                  "profitAmount": 238300,
+                  "returnRate": 6.75,
+                  "color": "#22d3ee",
+                  "comment": "포트 내 유일한 수익 구간. AI·반도체 모멘텀을 계속 확인할 필요."
+            },
+            {
+                  "key": "securities",
+                  "name": "KODEX 증권",
+                  "shortName": "증권",
+                  "quantity": 105,
+                  "buyPrice": 33500,
+                  "currentPrice": 29350,
+                  "purchaseAmount": 3517500,
+                  "evaluationAmount": 3081750,
+                  "profitAmount": -435750,
+                  "returnRate": -12.39,
+                  "color": "#38bdf8",
+                  "comment": "증권 업종 조정폭이 커진 구간. 반등 시 회복 탄력 확인 필요."
+            },
+            {
+                  "key": "battery",
+                  "name": "TIGER 2차전지TOP10",
+                  "shortName": "2차전지",
+                  "quantity": 237,
+                  "buyPrice": 14695,
+                  "currentPrice": 13480,
+                  "purchaseAmount": 3482715,
+                  "evaluationAmount": 3194760,
+                  "profitAmount": -287955,
+                  "returnRate": -8.27,
+                  "color": "#a78bfa",
+                  "comment": "섹터 전반 약세가 이어지는 구간. 추세 전환 여부를 지켜볼 필요."
+            },
+            {
+                  "key": "defense",
+                  "name": "PLUS K방산",
+                  "shortName": "K방산",
+                  "quantity": 43,
+                  "buyPrice": 80705,
+                  "currentPrice": 72475,
+                  "purchaseAmount": 3470315,
+                  "evaluationAmount": 3116425,
+                  "profitAmount": -353890,
+                  "returnRate": -10.2,
+                  "color": "#f472b6",
+                  "comment": "방산 테마 수급 부담이 지속되는 구간. 단기 변동성 관리가 필요."
+            }
       ],
-      memo: [
-        { key: "운용 방식", value: "5개 ETF 동일비중" },
-        { key: "포트 성격", value: "공격형 성장 ETF 포트" },
-        { key: "핵심 키워드", value: "AI / 전력 / 유동성 / 정책수혜" },
-        { key: "체크포인트", value: "AI 주도 지속 + 방산 낙폭 안정화" }
+      "memo": [
+            {
+                  "key": "운용 방식",
+                  "value": "5개 ETF 동일비중"
+            },
+            {
+                  "key": "포트 성격",
+                  "value": "공격형 성장 ETF 포트"
+            },
+            {
+                  "key": "핵심 키워드",
+                  "value": "AI / 전력 / 유동성 / 정책수혜"
+            },
+            {
+                  "key": "체크포인트",
+                  "value": "AI반도체 상대강세 유지 여부 체크"
+            }
       ],
-      statusMessages: [
-        "장마감 완료. AI가 버티고 방산이 숙제 남김 😇",
-        "AI반도체가 오늘도 에이스 역할 완료 🧠🔥",
-        "전력은 버티고, 방산은 다음 턴 준비 중 ⚡🔫",
-        "아직 마이너스지만 손실폭은 관리 중 😇",
-        "오늘의 결론: AI는 효자, 방산은 숙제 😂",
-        "동일비중 포트답게 흔들려도 균형은 유지 중 ⚖️",
-        "K방산아 이제 슬슬 기상하자 🔫",
-        "국장 흐름은 좋다. 우리 포트도 천천히 따라가자 🚀"
+      "statusMessages": [
+            "2026.05.12 KRX 종가 기준 업데이트 완료 📊",
+            "AI반도체만 플러스, 나머지는 방어전 진행 중 😇",
+            "총수익률 -5.43%, 지금은 리스크 관리 구간 🙏",
+            "동일비중 포트라 같이 흔들려도 기준은 유지한다 ⚖️",
+            "국장 변동성 속에서도 회비포트는 계속 점검 중 🚀"
       ]
-    };
+};
 
     let donutData = {};
     let keys = [];
     let selectedIndex = 0;
-    let statusMessages = DEFAULT_DASHBOARD_DATA.statusMessages;
+    let statusMessages = DASHBOARD_DATA.statusMessages;
 
     const number = value => Number(value || 0);
     const formatNumber = value => Math.round(number(value)).toLocaleString("ko-KR");
@@ -1614,17 +1688,7 @@
       updateDonutDetail(keys[selectedIndex]);
     });
 
-    async function loadDashboardData() {
-      try {
-        const response = await fetch("data.json?ts=" + Date.now(), { cache: "no-store" });
-        if (!response.ok) throw new Error("data.json load failed");
-        renderDashboard(await response.json());
-      } catch (error) {
-        renderDashboard(DEFAULT_DASHBOARD_DATA);
-      }
-    }
-
-    loadDashboardData();
+    renderDashboard(DASHBOARD_DATA);
 
     const COMMENT_API_URL = "https://script.google.com/macros/s/AKfycbxYXyr27dN-8l00hi7AI5-1bK7UTKZyqOXNtADv1okM5B0kOEN3OJk6jWo-YEnUiQhi/exec";
 
