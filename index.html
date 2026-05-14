@@ -5,11 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>DNW ETF Portfolio Dashboard</title>
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       min-height: 100vh;
@@ -19,10 +15,7 @@
       padding: 28px;
     }
 
-    .dashboard {
-      max-width: 1280px;
-      margin: 0 auto;
-    }
+    .dashboard { max-width: 1280px; margin: 0 auto; }
 
     .header {
       display: flex;
@@ -45,21 +38,11 @@
       margin-bottom: 14px;
     }
 
-    h1 {
-      font-size: 46px;
-      line-height: 1.08;
-      letter-spacing: -0.04em;
-      font-weight: 900;
-    }
-
-    .subtitle {
-      margin-top: 12px;
-      color: #a1a1aa;
-      font-size: 18px;
-    }
+    h1 { font-size: 46px; line-height: 1.08; letter-spacing: -0.04em; font-weight: 900; }
+    .subtitle { margin-top: 12px; color: #a1a1aa; font-size: 18px; }
 
     .date-card {
-      min-width: 190px;
+      min-width: 220px;
       padding: 16px 20px;
       border-radius: 22px;
       background: rgba(255,255,255,0.06);
@@ -67,16 +50,8 @@
       text-align: right;
     }
 
-    .muted {
-      color: #a1a1aa;
-      font-size: 13px;
-    }
-
-    .date-card strong {
-      display: block;
-      margin-top: 4px;
-      font-size: 17px;
-    }
+    .muted { color: #a1a1aa; font-size: 13px; }
+    .date-card strong { display: block; margin-top: 4px; font-size: 17px; }
 
     .kpi-grid {
       display: grid;
@@ -85,68 +60,30 @@
       margin-bottom: 24px;
     }
 
-    .kpi-card,
-    .panel {
+    .kpi-card, .panel {
       border-radius: 30px;
       background: #17181d;
       border: 1px solid rgba(255,255,255,0.1);
       box-shadow: 0 24px 70px rgba(0,0,0,0.32);
     }
 
-    .kpi-card {
-      padding: 22px;
-    }
-
-    .kpi-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 24px;
-    }
-
+    .kpi-card { padding: 22px; }
+    .kpi-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
     .icon {
-      width: 42px;
-      height: 42px;
-      display: grid;
-      place-items: center;
-      border-radius: 16px;
-      background: rgba(255,255,255,0.1);
-      font-size: 20px;
+      width: 42px; height: 42px; display: grid; place-items: center;
+      border-radius: 16px; background: rgba(255,255,255,0.1); font-size: 20px;
     }
-
-    .kpi-label {
-      color: #a1a1aa;
-      font-size: 14px;
-      margin-bottom: 5px;
-    }
-
-    .kpi-value {
-      font-size: 25px;
-      font-weight: 900;
-      letter-spacing: -0.03em;
-    }
+    .kpi-label { color: #a1a1aa; font-size: 14px; margin-bottom: 5px; }
+    .kpi-value { font-size: 25px; font-weight: 900; letter-spacing: -0.03em; }
 
     .loss { color: #93c5fd; }
     .gain { color: #f9a8d4; }
     .cyan { color: #67e8f9; }
 
-    .main-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 22px;
-      margin-bottom: 24px;
-    }
-
-    .two-col-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 22px;
-      margin-bottom: 24px;
-    }
-
-    .panel {
-      padding: 26px;
-    }
+    .panel { padding: 26px; }
+    .main-grid { display: grid; grid-template-columns: 1fr; gap: 22px; margin-bottom: 24px; }
+    .two-col-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-bottom: 24px; }
+    .bottom-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 22px; }
 
     .panel-head {
       display: flex;
@@ -156,74 +93,42 @@
       margin-bottom: 24px;
     }
 
-    h2 {
-      font-size: 28px;
-      letter-spacing: -0.03em;
-      font-weight: 850;
-    }
+    h2 { font-size: 28px; letter-spacing: -0.03em; font-weight: 850; }
 
-    .mini-box {
-      padding: 10px 14px;
-      border-radius: 18px;
-      background: rgba(255,255,255,0.08);
-      text-align: right;
-    }
+    .mini-box { padding: 10px 14px; border-radius: 18px; background: rgba(255,255,255,0.08); text-align: right; }
+    .mini-box strong { display: block; margin-top: 3px; font-size: 20px; color: #67e8f9; }
 
-    .mini-box strong {
-      display: block;
-      margin-top: 3px;
-      font-size: 20px;
-      color: #67e8f9;
-    }
+    .memo-grid { margin-top: 18px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 13px; }
+    .memo-card { padding: 16px; border-radius: 18px; background: rgba(255,255,255,0.06); }
+    .memo-card .key { color: #a1a1aa; font-size: 13px; margin-bottom: 6px; }
+    .memo-card .val { font-weight: 800; }
 
-    .weight-list {
-      display: grid;
-      gap: 18px;
-    }
-
-    .donut-wrap {
-      display: grid;
-      grid-template-columns: 300px 1fr;
-      gap: 32px;
-      align-items: center;
-      margin-top: 12px;
-    }
-
+    .donut-wrap { display: grid; grid-template-columns: 300px 1fr; gap: 32px; align-items: center; margin-top: 12px; }
     .donut-chart {
       width: 260px;
       height: 260px;
       border-radius: 50%;
-      background: conic-gradient(
-        #22d3ee 0deg 72.65deg,
-        #38bdf8 72.65deg 144.98deg,
-        #60a5fa 144.98deg 216.62deg,
-        #a78bfa 216.62deg 288.26deg,
-        #f472b6 288.26deg 359.89deg,
-        #4b5563 359.89deg 360deg
-      );
       position: relative;
-      box-shadow: 0 0 30px rgba(34,211,238,0.16), 0 0 0 8px rgba(34,211,238,0.05);
       margin: 0 auto;
       cursor: pointer;
       transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
       animation: donutPulse 2.2s ease-in-out infinite;
+      box-shadow: 0 0 30px rgba(34,211,238,0.16), 0 0 0 8px rgba(34,211,238,0.05);
     }
-
-    .donut-chart:hover,
-    .donut-chart:active {
+    .donut-chart:hover, .donut-chart:active {
       transform: scale(1.035);
       filter: brightness(1.1);
       box-shadow: 0 0 40px rgba(34,211,238,0.32), 0 0 0 10px rgba(34,211,238,0.08);
     }
-
     @keyframes donutPulse {
       0%, 100% { box-shadow: 0 0 30px rgba(34,211,238,0.16), 0 0 0 8px rgba(34,211,238,0.05); }
       50% { box-shadow: 0 0 42px rgba(34,211,238,0.28), 0 0 0 11px rgba(34,211,238,0.08); }
     }
-
-    .donut-chart::after {
-      content: "99.98%\A 주식비중";
-      white-space: pre;
+    .donut-chart svg {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      transform: rotate(-90deg); overflow: visible; z-index: 1;
+    }
+    .donut-center {
       position: absolute;
       inset: 52px;
       border-radius: 50%;
@@ -236,366 +141,98 @@
       font-weight: 900;
       line-height: 1.35;
       box-shadow: inset 0 0 18px rgba(0,0,0,0.35);
+      z-index: 2;
+      pointer-events: none;
+      white-space: pre-line;
     }
-
-    .donut-legend {
-      display: grid;
-      gap: 12px;
+    .donut-segment-bg { fill: none; stroke: rgba(255,255,255,0.08); stroke-width: 24; }
+    .donut-segment {
+      fill: none; stroke-width: 24; stroke-linecap: round; cursor: pointer;
+      pointer-events: stroke;
+      filter: drop-shadow(0 2px 7px rgba(0,0,0,0.35));
+      transition: stroke-width 0.18s ease, filter 0.18s ease, transform 0.18s ease, opacity 0.18s ease;
+      transform-origin: 130px 130px;
+      opacity: 0.9;
     }
+    .donut-segment:hover, .donut-segment.active { stroke-width: 31; filter: drop-shadow(0 0 13px rgba(255,255,255,0.28)); opacity: 1; }
+    .donut-segment.active { transform: scale(1.025); }
 
+    .donut-click-hint { margin-top: 10px; color: #71717a; font-size: 12px; }
+    .donut-legend { display: grid; gap: 12px; }
     .legend-row {
-      display: grid;
-      grid-template-columns: 14px 1fr auto 12px;
-      gap: 10px;
-      align-items: center;
-      font-size: 15px;
-      padding: 8px 10px;
-      border-radius: 12px;
-      cursor: pointer;
-      transition: background 0.18s ease, transform 0.18s ease;
+      display: grid; grid-template-columns: 14px 1fr auto 12px; gap: 10px; align-items: center;
+      font-size: 15px; padding: 8px 10px; border-radius: 12px;
+      cursor: pointer; transition: background 0.18s ease, transform 0.18s ease;
     }
+    .legend-row:hover, .legend-row.active { background: rgba(255,255,255,0.08); transform: translateY(-1px); }
+    .legend-row::after { content: "›"; color: #67e8f9; font-weight: 900; opacity: 0.75; }
+    .legend-row.active { border: 1px solid rgba(103,232,249,0.35); box-shadow: inset 0 0 16px rgba(34,211,238,0.08); }
+    .legend-dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; }
 
-    .legend-row:hover,
-    .legend-row.active {
-      background: rgba(255,255,255,0.08);
-      transform: translateY(-1px);
-    }
+    .donut-detail { margin-top: 18px; padding: 16px; border-radius: 20px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08); }
+    .donut-detail-title { display: flex; justify-content: space-between; align-items: center; gap: 12px; font-size: 18px; font-weight: 900; margin-bottom: 10px; }
+    .donut-detail-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 12px; }
+    .donut-detail-cell { padding: 10px; border-radius: 14px; background: rgba(0,0,0,0.18); }
+    .donut-detail-cell span { display: block; color: #a1a1aa; font-size: 12px; margin-bottom: 5px; }
+    .donut-detail-cell strong { font-size: 15px; }
 
-    .legend-row::after {
-      content: "›";
-      color: #67e8f9;
-      font-weight: 900;
-      opacity: 0.75;
-    }
+    .pnl-chart { height: 300px; display: flex; flex-direction: column; justify-content: center; gap: 17px; }
+    .pnl-row { display: grid; grid-template-columns: 86px 1fr 90px; gap: 12px; align-items: center; font-size: 14px; }
+    .pnl-bar-track { height: 22px; border-radius: 999px; background: rgba(255,255,255,0.10); position: relative; overflow: hidden; }
+    .pnl-mid { position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: rgba(255,255,255,0.25); }
+    .pnl-bar { position: absolute; top: 0; height: 100%; border-radius: 999px; }
+    .pnl-bar.positive { left: 50%; background: #f472b6; }
+    .pnl-bar.negative { right: 50%; background: #60a5fa; }
+    .pnl-value { text-align: right; font-weight: 800; }
 
-    .legend-row.active {
-      border: 1px solid rgba(103,232,249,0.35);
-      box-shadow: inset 0 0 16px rgba(34,211,238,0.08);
-    }
+    .table-panel { margin-bottom: 24px; }
+    .table-wrap { overflow-x: auto; border-radius: 24px; border: 1px solid rgba(255,255,255,0.1); }
+    table { width: 100%; min-width: 980px; border-collapse: collapse; font-size: 14px; }
+    th { background: rgba(255,255,255,0.09); color: #d4d4d8; text-align: right; padding: 15px 14px; font-weight: 750; white-space: nowrap; }
+    th:first-child, td:first-child { text-align: left; }
+    td { padding: 15px 14px; border-top: 1px solid rgba(255,255,255,0.09); color: #e4e4e7; text-align: right; white-space: nowrap; }
+    td:first-child { color: white; font-weight: 720; }
+    .total-row td { background: rgba(255,255,255,0.045); font-weight: 900; }
+    .mobile-holdings { display: none; }
 
-    .legend-dot {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      display: inline-block;
+    .status-title-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .tap-badge {
+      padding: 8px 14px; border-radius: 999px;
+      background: linear-gradient(180deg, rgba(34,211,238,0.18), rgba(34,211,238,0.08));
+      border: 1px solid rgba(34,211,238,0.32); color: #a5f3fc; font-size: 12px; font-weight: 800;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.12), 0 4px 14px rgba(34,211,238,0.16);
+      cursor: pointer; transition: transform 0.16s ease, box-shadow 0.16s ease, filter 0.16s ease; user-select: none;
     }
-
-    .donut-detail {
-      margin-top: 18px;
-      padding: 16px;
-      border-radius: 20px;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.08);
-    }
-
-    .donut-detail-title {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-      font-size: 18px;
-      font-weight: 900;
-      margin-bottom: 10px;
-    }
-
-    .donut-detail-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-      margin-top: 12px;
-    }
-
-    .donut-detail-cell {
-      padding: 10px;
-      border-radius: 14px;
-      background: rgba(0,0,0,0.18);
-    }
-
-    .donut-detail-cell span {
-      display: block;
-      color: #a1a1aa;
-      font-size: 12px;
-      margin-bottom: 5px;
-    }
-
-    .donut-detail-cell strong {
-      font-size: 15px;
-    }
-
-    .donut-click-hint {
-      margin-top: 10px;
-      color: #71717a;
-      font-size: 12px;
-    }
-
-    .weight-row-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 8px;
-      font-size: 15px;
-    }
-
-    .weight-name {
-      font-weight: 650;
-    }
-
-    .weight-value {
-      font-weight: 800;
-    }
-
-    .track {
-      height: 13px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.10);
-      overflow: hidden;
-    }
-
-    .fill {
-      height: 100%;
-      border-radius: 999px;
-      background: #22d3ee;
-      box-shadow: 0 0 20px rgba(34, 211, 238, 0.42);
-    }
-
-    .pnl-chart {
-      height: 300px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 17px;
-    }
-
-    .pnl-row {
-      display: grid;
-      grid-template-columns: 86px 1fr 90px;
-      gap: 12px;
-      align-items: center;
-      font-size: 14px;
-    }
-
-    .pnl-bar-track {
-      height: 22px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.10);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .pnl-mid {
-      position: absolute;
-      left: 50%;
-      top: 0;
-      bottom: 0;
-      width: 1px;
-      background: rgba(255,255,255,0.25);
-    }
-
-    .pnl-bar {
-      position: absolute;
-      top: 0;
-      height: 100%;
-      border-radius: 999px;
-    }
-
-    .pnl-bar.positive {
-      left: 50%;
-      background: #f472b6;
-    }
-
-    .pnl-bar.negative {
-      right: 50%;
-      background: #60a5fa;
-    }
-
-    .pnl-value {
-      text-align: right;
-      font-weight: 800;
-    }
-
-    .table-panel {
-      margin-bottom: 24px;
-    }
-
-    .table-wrap {
-      overflow-x: auto;
-      border-radius: 24px;
-      border: 1px solid rgba(255,255,255,0.1);
-    }
-
-    table {
-      width: 100%;
-      min-width: 980px;
-      border-collapse: collapse;
-      font-size: 14px;
-    }
-
-    th {
-      background: rgba(255,255,255,0.09);
-      color: #d4d4d8;
-      text-align: right;
-      padding: 15px 14px;
-      font-weight: 750;
-      white-space: nowrap;
-    }
-
-    th:first-child,
-    td:first-child {
-      text-align: left;
-    }
-
-    td {
-      padding: 15px 14px;
-      border-top: 1px solid rgba(255,255,255,0.09);
-      color: #e4e4e7;
-      text-align: right;
-      white-space: nowrap;
-    }
-
-    td:first-child {
-      color: white;
-      font-weight: 720;
-    }
-
-    .total-row td {
-      background: rgba(255,255,255,0.045);
-      font-weight: 900;
-    }
-
-    .bottom-grid {
-      display: grid;
-      grid-template-columns: 0.9fr 1.1fr;
-      gap: 22px;
-    }
+    .tap-badge:hover, .tap-badge:active { transform: translateY(-1px) scale(1.03); filter: brightness(1.08); box-shadow: inset 0 1px 0 rgba(255,255,255,0.16), 0 8px 20px rgba(34,211,238,0.24); }
 
     .status-box {
-      margin-top: 18px;
-      padding: 20px;
-      border-radius: 24px;
+      margin-top: 18px; padding: 20px; border-radius: 24px;
       background: linear-gradient(180deg, rgba(34,211,238,0.10), rgba(255,255,255,0.05));
       border: 1px solid rgba(34,211,238,0.22);
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.10), 0 10px 26px rgba(34,211,238,0.12);
-      font-size: 18px;
-      line-height: 1.65;
-      cursor: pointer;
-      transition: transform 0.16s ease, box-shadow 0.16s ease, filter 0.16s ease;
-      user-select: none;
+      font-size: 18px; line-height: 1.65; cursor: pointer;
+      transition: transform 0.16s ease, box-shadow 0.16s ease, filter 0.16s ease; user-select: none;
     }
+    .status-box:hover, .status-box:active { transform: translateY(-2px) scale(1.01); filter: brightness(1.05); box-shadow: inset 0 1px 0 rgba(255,255,255,0.14), 0 14px 34px rgba(34,211,238,0.18); }
 
-    .status-box:hover,
-    .status-box:active {
-      transform: translateY(-2px) scale(1.01);
-      filter: brightness(1.05);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.14), 0 14px 34px rgba(34,211,238,0.18);
-    }
-
-    .comment-form {
-      display: grid;
-      grid-template-columns: 120px 1fr auto;
-      gap: 10px;
-      margin-top: 14px;
-    }
-
+    .comment-form { display: grid; grid-template-columns: 120px 1fr auto; gap: 10px; margin-top: 14px; }
     .comment-form input {
-      width: 100%;
-      border: 1px solid rgba(255,255,255,0.10);
-      background: rgba(0,0,0,0.22);
-      color: #f4f4f5;
-      border-radius: 14px;
-      padding: 12px 13px;
-      font-size: 14px;
-      outline: none;
+      width: 100%; border: 1px solid rgba(255,255,255,0.10); background: rgba(0,0,0,0.22);
+      color: #f4f4f5; border-radius: 14px; padding: 12px 13px; font-size: 14px; outline: none;
     }
-
-    .comment-form input:focus {
-      border-color: rgba(103,232,249,0.50);
-      box-shadow: 0 0 0 3px rgba(34,211,238,0.10);
-    }
-
+    .comment-form input:focus { border-color: rgba(103,232,249,0.50); box-shadow: 0 0 0 3px rgba(34,211,238,0.10); }
     .comment-form button {
-      border: 1px solid rgba(103,232,249,0.35);
-      background: linear-gradient(180deg, rgba(34,211,238,0.20), rgba(34,211,238,0.08));
-      color: #a5f3fc;
-      border-radius: 14px;
-      padding: 0 16px;
-      font-weight: 900;
-      cursor: pointer;
+      border: 1px solid rgba(103,232,249,0.35); background: linear-gradient(180deg, rgba(34,211,238,0.20), rgba(34,211,238,0.08));
+      color: #a5f3fc; border-radius: 14px; padding: 0 16px; font-weight: 900; cursor: pointer;
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.14), 0 8px 22px rgba(34,211,238,0.14);
     }
+    .comment-meta { margin-top: 10px; color: #a1a1aa; font-size: 12px; }
+    .comment-history { margin-top: 16px; display: grid; gap: 8px; }
+    .comment-history-title { color: #a1a1aa; font-size: 13px; font-weight: 800; }
+    .comment-history-item { padding: 10px 12px; border-radius: 14px; background: rgba(255,255,255,0.045); color: #d4d4d8; font-size: 13px; line-height: 1.45; }
+    .comment-history-item strong { color: #67e8f9; margin-right: 6px; }
 
-    .comment-meta {
-      margin-top: 10px;
-      color: #a1a1aa;
-      font-size: 12px;
-    }
-
-    .comment-history {
-      margin-top: 16px;
-      display: grid;
-      gap: 8px;
-    }
-
-    .comment-history-title {
-      color: #a1a1aa;
-      font-size: 13px;
-      font-weight: 800;
-    }
-
-    .comment-history-item {
-      padding: 10px 12px;
-      border-radius: 14px;
-      background: rgba(255,255,255,0.045);
-      color: #d4d4d8;
-      font-size: 13px;
-      line-height: 1.45;
-    }
-
-    .comment-history-item strong {
-      color: #67e8f9;
-      margin-right: 6px;
-    }
-
-    @media (max-width: 760px) {
-      .comment-form {
-        grid-template-columns: 1fr;
-      }
-
-      .comment-form button {
-        padding: 12px 16px;
-      }
-    }
-
-    .memo-grid {
-      margin-top: 18px;
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 13px;
-    }
-
-    .memo-card {
-      padding: 16px;
-      border-radius: 18px;
-      background: rgba(255,255,255,0.06);
-    }
-
-    .memo-card .key {
-      color: #a1a1aa;
-      font-size: 13px;
-      margin-bottom: 6px;
-    }
-
-    .memo-card .val {
-      font-weight: 800;
-    }
-
-    
-
-    .note {
-      margin-top: 18px;
-      color: #71717a;
-      font-size: 12px;
-      line-height: 1.5;
-    }
+    .note { margin-top: 18px; color: #71717a; font-size: 12px; line-height: 1.5; }
 
     @media (max-width: 980px) {
       body { padding: 18px; }
@@ -606,322 +243,53 @@
       .main-grid, .two-col-grid, .bottom-grid { grid-template-columns: 1fr; }
     }
 
+    @media (max-width: 760px) {
+      body { padding: 14px; }
+      .dashboard { width: 100%; max-width: 100%; overflow-x: hidden; }
+      .header { margin-bottom: 20px; }
+      .badge { font-size: 12px; padding: 6px 10px; }
+      h1 { font-size: 28px; line-height: 1.15; }
+      .subtitle { font-size: 14px; line-height: 1.45; }
+      .date-card { width: 100%; min-width: 0; padding: 13px 15px; }
+      .kpi-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+      .kpi-card { padding: 15px; border-radius: 20px; }
+      .kpi-top { margin-bottom: 14px; }
+      .icon { width: 34px; height: 34px; border-radius: 13px; font-size: 17px; }
+      .kpi-label { font-size: 12px; }
+      .kpi-value { font-size: 18px; }
+      .panel { padding: 18px; border-radius: 24px; }
+      h2 { font-size: 22px; }
+      .mini-box { padding: 9px 12px; }
+      .mini-box strong { font-size: 17px; }
+      .donut-wrap { grid-template-columns: 1fr; gap: 22px; }
+      .donut-chart { width: 240px; height: 240px; }
+      .donut-legend, .donut-detail { width: 100%; }
+      .donut-detail-grid { grid-template-columns: repeat(3, 1fr); }
+      .pnl-chart { height: auto; gap: 14px; }
+      .pnl-row { grid-template-columns: 64px 1fr 78px; gap: 9px; font-size: 12px; }
+      .pnl-bar-track { height: 18px; }
+      .table-wrap { display: none; }
+      .mobile-holdings { display: grid; gap: 12px; }
+      .holding-card { border-radius: 20px; background: rgba(255,255,255,0.055); border: 1px solid rgba(255,255,255,0.1); padding: 15px; }
+      .holding-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; margin-bottom: 13px; }
+      .holding-title { font-size: 15px; font-weight: 850; line-height: 1.35; }
+      .holding-weight { color: #67e8f9; font-weight: 900; white-space: nowrap; }
+      .holding-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 9px; }
+      .holding-cell { padding: 10px; border-radius: 14px; background: rgba(0,0,0,0.18); }
+      .holding-cell span { display: block; color: #a1a1aa; font-size: 11px; margin-bottom: 4px; }
+      .holding-cell strong { display: block; font-size: 14px; color: #f4f4f5; }
+      .holding-cell strong.gain { color: #f9a8d4; }
+      .holding-cell strong.loss { color: #93c5fd; }
+      .memo-grid { grid-template-columns: 1fr; }
+      .status-box { font-size: 15px; }
+      .comment-form { grid-template-columns: 1fr; }
+      .comment-form button { padding: 12px 16px; }
+    }
+
     @media (max-width: 620px) {
       .kpi-grid { grid-template-columns: 1fr; }
       h1 { font-size: 32px; }
       .panel, .kpi-card { border-radius: 24px; padding: 20px; }
-      .memo-grid { grid-template-columns: 1fr; }
-    }
-  
-
-    .mobile-holdings {
-      display: none;
-    }
-
-    @media (max-width: 760px) {
-      .dashboard {
-        width: 100%;
-        overflow-x: hidden;
-      }
-
-      .panel,
-      .kpi-card,
-      .holding-card,
-      .total-card {
-        width: 100%;
-        max-width: 100%;
-      }
-
-      .donut-wrap {
-        grid-template-columns: 1fr;
-        gap: 22px;
-      }
-
-      .donut-chart {
-        width: 240px;
-        height: 240px;
-      }
-
-      .donut-legend {
-        width: 100%;
-      }
-
-      .donut-detail {
-        width: 100%;
-      }
-
-      .donut-detail-grid {
-        grid-template-columns: 1fr 1fr 1fr;
-      }
-
-      .status-box,
-      .memo-card,
-      .donut-detail,
-      .holding-cell {
-        width: 100%;
-      }
-      body {
-        padding: 14px;
-      }
-
-      .dashboard {
-        max-width: 100%;
-      }
-
-      .header {
-        margin-bottom: 20px;
-      }
-
-      .badge {
-        font-size: 12px;
-        padding: 6px 10px;
-      }
-
-      h1 {
-        font-size: 28px;
-        line-height: 1.15;
-      }
-
-      .subtitle {
-        font-size: 14px;
-        line-height: 1.45;
-      }
-
-      .date-card {
-        width: 100%;
-        min-width: 0;
-        padding: 13px 15px;
-      }
-
-      .kpi-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
-      }
-
-      .kpi-card {
-        padding: 15px;
-        border-radius: 20px;
-      }
-
-      .kpi-top {
-        margin-bottom: 14px;
-      }
-
-      .icon {
-        width: 34px;
-        height: 34px;
-        border-radius: 13px;
-        font-size: 17px;
-      }
-
-      .kpi-label {
-        font-size: 12px;
-      }
-
-      .kpi-value {
-        font-size: 18px;
-      }
-
-      .panel {
-        padding: 18px;
-        border-radius: 24px;
-      }
-
-      h2 {
-        font-size: 22px;
-      }
-
-      .mini-box {
-        padding: 9px 12px;
-      }
-
-      .mini-box strong {
-        font-size: 17px;
-      }
-
-      .weight-row-top {
-        font-size: 13px;
-      }
-
-      .track {
-        height: 10px;
-      }
-
-      .pnl-chart {
-        height: auto;
-        gap: 14px;
-      }
-
-      .pnl-row {
-        grid-template-columns: 64px 1fr 78px;
-        gap: 9px;
-        font-size: 12px;
-      }
-
-      .pnl-bar-track {
-        height: 18px;
-      }
-
-      .table-wrap {
-        display: none;
-      }
-
-      .mobile-holdings {
-        display: grid;
-        gap: 12px;
-      }
-
-      .holding-card {
-        border-radius: 20px;
-        background: rgba(255,255,255,0.055);
-        border: 1px solid rgba(255,255,255,0.1);
-        padding: 15px;
-      }
-
-      .holding-card.total-card {
-        display: none;
-        border: 2px solid rgba(103,232,249,0.45);
-        background: linear-gradient(180deg, rgba(34,211,238,0.08), rgba(255,255,255,0.05));
-        box-shadow: 0 0 28px rgba(34,211,238,0.18);
-      }
-
-      .holding-head {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-        gap: 10px;
-        margin-bottom: 13px;
-      }
-
-      .holding-title {
-        font-size: 15px;
-        font-weight: 850;
-        line-height: 1.35;
-      }
-
-      .holding-weight {
-        color: #67e8f9;
-        font-weight: 900;
-        white-space: nowrap;
-      }
-
-      .holding-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 9px;
-      }
-
-      .holding-cell {
-        padding: 10px;
-        border-radius: 14px;
-        background: rgba(0,0,0,0.18);
-      }
-
-      .holding-cell span {
-        display: block;
-        color: #a1a1aa;
-        font-size: 11px;
-        margin-bottom: 4px;
-      }
-
-      .holding-cell strong {
-        display: block;
-        font-size: 14px;
-        color: #f4f4f5;
-      }
-
-      .holding-cell strong.gain {
-        color: #f9a8d4;
-      }
-
-      .holding-cell strong.loss {
-        color: #93c5fd;
-      }
-
-      .memo-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .status-box {
-        font-size: 15px;
-      }
-    }
-  
-
-    .donut-chart {
-      background: none !important;
-      overflow: visible;
-    }
-
-    .donut-chart svg {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      transform: rotate(-90deg);
-      overflow: visible;
-      z-index: 1;
-    }
-
-    .donut-segment-bg {
-      fill: none;
-      stroke: rgba(255,255,255,0.08);
-      stroke-width: 24;
-    }
-
-    .donut-segment {
-      fill: none;
-      stroke-width: 24;
-      stroke-linecap: round;
-      cursor: pointer;
-      filter: drop-shadow(0 2px 7px rgba(0,0,0,0.35));
-      transition: stroke-width 0.18s ease, filter 0.18s ease, transform 0.18s ease, opacity 0.18s ease;
-      transform-origin: 130px 130px;
-      opacity: 0.9;
-    }
-
-    .donut-segment:hover,
-    .donut-segment.active {
-      stroke-width: 31;
-      filter: drop-shadow(0 0 13px rgba(255,255,255,0.28));
-      opacity: 1;
-    }
-
-    .donut-segment.active {
-      transform: scale(1.025);
-    }
-
-    .donut-chart::after {
-      z-index: 2;
-      pointer-events: none;
-    }
-
-    .status-title-row {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    .tap-badge {
-      padding: 8px 14px;
-      border-radius: 999px;
-      background: linear-gradient(180deg, rgba(34,211,238,0.18), rgba(34,211,238,0.08));
-      border: 1px solid rgba(34,211,238,0.32);
-      color: #a5f3fc;
-      font-size: 12px;
-      font-weight: 800;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.12), 0 4px 14px rgba(34,211,238,0.16);
-      cursor: pointer;
-      transition: transform 0.16s ease, box-shadow 0.16s ease, filter 0.16s ease;
-      user-select: none;
-    }
-
-    .tap-badge:hover,
-    .tap-badge:active {
-      transform: translateY(-1px) scale(1.03);
-      filter: brightness(1.08);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.16), 0 8px 20px rgba(34,211,238,0.24);
     }
   </style>
 </head>
@@ -931,79 +299,17 @@
       <div>
         <div class="badge">📊 DNW 회비 ETF 운용 리포트</div>
         <h1>ETF 포트폴리오 대시보드</h1>
-        <p class="subtitle">AI 전력 · AI 반도체 · 증권 · 2차전지 · K방산 동일비중 포트</p>
+        <p class="subtitle">AI반도체 · 2차전지 · AI전력 · K방산 · 증권 동일비중 포트</p>
       </div>
       <div class="date-card">
         <span class="muted">기준일</span>
-        <strong>2026.05.13 KRX 종가 기준</strong>
+        <strong id="dateText"></strong>
       </div>
     </header>
 
-    <section class="kpi-grid">
-      <div class="kpi-card">
-        <div class="kpi-top"><div class="icon">💰</div><span class="muted">원금 기준<br>(2026.05.06)</span></div>
-        <div class="kpi-label">입금금액</div>
-        <div class="kpi-value">17,505,594원</div>
-      </div>
-      <div class="kpi-card">
-        <div class="kpi-top"><div class="icon">📊</div><span class="muted">주식 평가</span></div>
-        <div class="kpi-label">총 평가금액</div>
-        <div class="kpi-value">16,581,105원</div>
-      </div>
-      <div class="kpi-card">
-        <div class="kpi-top"><div class="icon">📉</div><span class="muted">-5.26%</span></div>
-        <div class="kpi-label">총 수익금액</div>
-        <div class="kpi-value loss">-920,985원</div>
-      </div>
-      <div class="kpi-card">
-        <div class="kpi-top"><div class="icon">🔥</div><span class="muted">0.02%</span></div>
-        <div class="kpi-label">예수금</div>
-        <div class="kpi-value">3,504원</div>
-      </div>
-    </section>
-
-    <section class="panel" style="margin-bottom:24px;">
-      <div class="panel-head" style="margin-bottom:0; align-items:center;">
-        <div>
-          <h2>총 자산</h2>
-          <p class="muted">총 평가금액 + 예수금 기준</p>
-        </div>
-        <div class="mini-box" style="padding:14px 20px;">
-          <span class="muted">현재 총 자산</span>
-          <strong style="font-size:36px; color:#67e8f9; margin-top:6px; display:block;">16,584,609원</strong>
-        </div>
-      </div>
-    </section>
-
-    <section class="panel" style="margin-bottom:24px;">
-      <h2>💰 DNW 자본금</h2>
-      <div class="memo-grid" style="margin-top:20px;">
-        <div class="memo-card">
-          <div class="key">참여 인원</div>
-          <div class="val">9명</div>
-        </div>
-        <div class="memo-card">
-          <div class="key">창립 출자금</div>
-          <div class="val">1인당 100만원</div>
-        </div>
-        <div class="memo-card">
-          <div class="key">월 정기 불입금</div>
-          <div class="val">1인당 5만원</div>
-        </div>
-        <div class="memo-card">
-          <div class="key">납부 회차</div>
-          <div class="val">11회차 완료</div>
-        </div>
-        <div class="memo-card" style="grid-column: span 2; border:2px solid rgba(103,232,249,0.35); background:linear-gradient(180deg, rgba(34,211,238,0.08), rgba(255,255,255,0.05));">
-          <div class="key">총 자본금</div>
-          <div class="val" style="font-size:32px; color:#67e8f9; margin-top:8px;">13,950,000원</div>
-          <div style="margin-top:12px; font-size:15px; color:#d4d4d8; line-height:1.6;">
-            자본금 대비 수익금 <span style="color:#f9a8d4; font-weight:800;">+2,634,609원</span><br>
-            자본금 대비 수익률 <span style="color:#f9a8d4; font-weight:800;">+18.89%</span>
-          </div>
-        </div>
-      </div>
-    </section>
+    <section class="kpi-grid" id="kpiGrid"></section>
+    <section class="panel" style="margin-bottom:24px;" id="assetPanel"></section>
+    <section class="panel" style="margin-bottom:24px;" id="capitalPanel"></section>
 
     <section class="main-grid">
       <div class="panel">
@@ -1014,46 +320,23 @@
           </div>
           <div class="mini-box">
             <span class="muted">주식 비중</span>
-            <strong>99.98%</strong>
+            <strong id="stockWeightText"></strong>
           </div>
         </div>
 
         <div class="donut-wrap">
           <div>
             <div class="donut-chart" id="donutChart" title="원그래프 조각을 누르면 상세가 바뀝니다">
-              <svg viewBox="0 0 260 260" aria-label="자산비중 원그래프">
+              <svg viewBox="0 0 260 260" aria-label="자산비중 원그래프" id="donutSvg">
                 <circle class="donut-segment-bg" cx="130" cy="130" r="90"></circle>
-                <circle class="donut-segment active" data-key="semi" cx="130" cy="130" r="90" pathLength="100" stroke="#22d3ee" stroke-dasharray="23.93 76.07" stroke-dashoffset="0"></circle>
-                <circle class="donut-segment" data-key="power" cx="130" cy="130" r="90" pathLength="100" stroke="#60a5fa" stroke-dasharray="19.99 80.01" stroke-dashoffset="-23.93"></circle>
-                <circle class="donut-segment" data-key="battery" cx="130" cy="130" r="90" pathLength="100" stroke="#a78bfa" stroke-dasharray="19.08 80.92" stroke-dashoffset="-43.92"></circle>
-                <circle class="donut-segment" data-key="defense" cx="130" cy="130" r="90" pathLength="100" stroke="#f472b6" stroke-dasharray="18.64 81.36" stroke-dashoffset="-63.00"></circle>
-                <circle class="donut-segment" data-key="securities" cx="130" cy="130" r="90" pathLength="100" stroke="#38bdf8" stroke-dasharray="18.34 81.66" stroke-dashoffset="-81.64"></circle>
-                <circle class="donut-segment" data-key="cash" cx="130" cy="130" r="90" pathLength="100" stroke="#4b5563" stroke-dasharray="0.02 99.98" stroke-dashoffset="-99.98"></circle>
               </svg>
+              <div class="donut-center" id="donutCenter"></div>
             </div>
             <div class="donut-click-hint">원 또는 항목 눌러 상세보기</div>
           </div>
           <div>
-            <div class="donut-legend">
-              <div class="legend-row active" data-key="semi"><span class="legend-dot" style="background:#22d3ee;"></span><span>SOL AI반도체TOP2플러스</span><strong>23.93%</strong></div>
-              <div class="legend-row" data-key="power"><span class="legend-dot" style="background:#60a5fa;"></span><span>TIGER 코리아AI전력기기TOP3</span><strong>19.99%</strong></div>
-              <div class="legend-row" data-key="battery"><span class="legend-dot" style="background:#a78bfa;"></span><span>TIGER 2차전지TOP10</span><strong>19.08%</strong></div>
-              <div class="legend-row" data-key="defense"><span class="legend-dot" style="background:#f472b6;"></span><span>PLUS K방산</span><strong>18.64%</strong></div>
-              <div class="legend-row" data-key="securities"><span class="legend-dot" style="background:#38bdf8;"></span><span>KODEX 증권</span><strong>18.34%</strong></div>
-              <div class="legend-row" data-key="cash"><span class="legend-dot" style="background:#4b5563;"></span><span>예수금</span><strong>0.02%</strong></div>
-            </div>
-            <div class="donut-detail" id="donutDetail">
-              <div class="donut-detail-title">
-                <span id="detailName">SOL AI반도체TOP2플러스</span>
-                <span id="detailWeight" class="cyan">23.93%</span>
-              </div>
-              <div class="muted" id="detailComment">AI반도체가 오늘도 포트 방어의 중심. 하락장 속 유일한 플러스 축.</div>
-              <div class="donut-detail-grid">
-                <div class="donut-detail-cell"><span>평가금액</span><strong id="detailValue">3,967,950</strong></div>
-                <div class="donut-detail-cell"><span>수익금</span><strong id="detailPnl" class="gain">+437,800</strong></div>
-                <div class="donut-detail-cell"><span>수익률</span><strong id="detailReturn" class="gain">+12.40%</strong></div>
-              </div>
-            </div>
+            <div class="donut-legend" id="donutLegend"></div>
+            <div class="donut-detail" id="donutDetail"></div>
           </div>
         </div>
       </div>
@@ -1062,41 +345,14 @@
         <div class="panel-head">
           <div>
             <h2>수익금 비교</h2>
-            <p class="muted">종목별 평가손익 </p>
+            <p class="muted">종목별 평가손익</p>
           </div>
           <div class="mini-box">
             <span class="muted">계좌기준</span>
-            <strong class="loss">-920,985원</strong>
+            <strong class="loss" id="pnlBox"></strong>
           </div>
         </div>
-
-        <div class="pnl-chart">
-          <div class="pnl-row">
-            <span>AI반도체</span>
-            <div class="pnl-bar-track"><span class="pnl-mid"></span><span class="pnl-bar positive" style="width: 45.9%"></span></div>
-            <span class="pnl-value gain">+437,800</span>
-          </div>
-          <div class="pnl-row">
-            <span>AI전력</span>
-            <div class="pnl-bar-track"><span class="pnl-mid"></span><span class="pnl-bar negative" style="width: 18.9%"></span></div>
-            <span class="pnl-value loss">-180,400</span>
-          </div>
-          <div class="pnl-row">
-            <span>2차전지</span>
-            <div class="pnl-bar-track"><span class="pnl-mid"></span><span class="pnl-bar negative" style="width: 33.3%"></span></div>
-            <span class="pnl-value loss">-317,580</span>
-          </div>
-          <div class="pnl-row">
-            <span>K방산</span>
-            <div class="pnl-bar-track"><span class="pnl-mid"></span><span class="pnl-bar negative" style="width: 39.8%"></span></div>
-            <span class="pnl-value loss">-379,045</span>
-          </div>
-          <div class="pnl-row">
-            <span>증권</span>
-            <div class="pnl-bar-track"><span class="pnl-mid"></span><span class="pnl-bar negative" style="width: 50%"></span></div>
-            <span class="pnl-value loss">-476,700</span>
-          </div>
-        </div>
+        <div class="pnl-chart" id="pnlChart"></div>
       </div>
     </section>
 
@@ -1108,7 +364,7 @@
         </div>
         <div class="mini-box">
           <span class="muted">계좌 표시 총손익</span>
-          <strong class="loss">-920,985원 / -5.26%</strong>
+          <strong class="loss" id="accountPnlBox"></strong>
         </div>
       </div>
 
@@ -1116,225 +372,390 @@
         <table>
           <thead>
             <tr>
-              <th>종목</th>
-              <th>수량</th>
-              <th>매입가</th>
-              <th>현재가</th>
-              <th>매입총액</th>
-              <th>평가금액</th>
-              <th>수익금</th>
-              <th>수익률</th>
-              <th>비중</th>
+              <th>종목</th><th>수량</th><th>매입가</th><th>현재가</th><th>매입총액</th><th>평가금액</th><th>수익금</th><th>수익률</th><th>비중</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <td>SOL AI반도체TOP2플러스</td>
-              <td>210</td><td>16,810</td><td>18,895</td><td>3,530,150</td><td>3,967,950</td><td class="gain">+437,800</td><td class="gain">+12.40%</td><td class="cyan">23.93%</td>
-            </tr>
-            <tr>
-              <td>TIGER 코리아AI전력기기TOP3</td>
-              <td>110</td><td>31,785</td><td>30,145</td><td>3,496,350</td><td>3,315,950</td><td class="loss">-180,400</td><td class="loss">-5.16%</td><td class="cyan">19.99%</td>
-            </tr>
-            <tr>
-              <td>TIGER 2차전지TOP10</td>
-              <td>237</td><td>14,695</td><td>13,355</td><td>3,482,715</td><td>3,165,135</td><td class="loss">-317,580</td><td class="loss">-9.12%</td><td class="cyan">19.08%</td>
-            </tr>
-            <tr>
-              <td>PLUS K방산</td>
-              <td>43</td><td>80,705</td><td>71,890</td><td>3,470,315</td><td>3,091,270</td><td class="loss">-379,045</td><td class="loss">-10.92%</td><td class="cyan">18.64%</td>
-            </tr>
-            <tr>
-              <td>KODEX 증권</td>
-              <td>105</td><td>33,500</td><td>28,960</td><td>3,517,500</td><td>3,040,800</td><td class="loss">-476,700</td><td class="loss">-13.55%</td><td class="cyan">18.34%</td>
-            </tr>
-            <tr>
-              <td>예수금</td>
-              <td colspan="5">3,504원</td>
-              <td>-</td><td>-</td><td class="cyan">0.02%</td>
-            </tr>
-            
-            <tr class="total-row">
-              <td>합계</td>
-              <td></td><td></td><td></td><td>17,497,030</td><td>16,584,609</td><td class="loss">-950,495</td><td class="loss">-5.26%</td><td class="cyan">100.00%</td>
-            </tr>
-          </tbody>
+          <tbody id="holdingsTable"></tbody>
         </table>
       </div>
-
-      <p class="note">※ 예수금은 국내주식 결제(T+2) 및 ETF 분배금·수수료 반영에 따라 장중·장마감 후 소폭 변동될 수 있음. 현재 총자산 기준: 평가금액 16,581,105원 + 예수금 3,504원 = 16,584,609원.
-※ 수익률은 실제 계좌 기준 평가수익률(보유수익률) 기준으로 표기. 개별 ETF 평가손익 합계는 -915,925원이며, 계좌 표시 총손익 -920,985원과의 차이 5,060원은 수수료·세금·증권사 정산 반영분.</p>
+      <div class="mobile-holdings" id="mobileHoldings"></div>
+      <p class="note" id="noteText"></p>
     </section>
 
     <section class="bottom-grid">
       <div class="panel">
         <div class="status-title-row"><h2>💬 오늘의 한줄평</h2><span class="tap-badge">한줄평 변경</span></div>
-        <div class="status-box" id="statusBox">
-        <span id="statusMessage">장마감 완료. AI반도체 혼자 플러스 방어 성공 🧠🔥</span>
-      </div>
-      <div class="comment-meta" id="commentMeta">공유 한줄평을 불러오는 중...</div>
-      <div class="comment-form">
-        <input id="commentAuthor" maxlength="10" placeholder="닉네임 10자 이내" />
-        <input id="commentInput" maxlength="40" placeholder="한줄평 40자 이내" />
-        <button id="commentSubmit" type="button">업데이트</button>
-      </div>
-      <div class="comment-history" id="commentHistory">
-        <div class="comment-history-title">최근 한줄평</div>
-      </div>
+        <div class="status-box" id="statusBox"><span id="statusMessage"></span></div>
+        <div class="comment-meta" id="commentMeta">공유 한줄평을 불러오는 중...</div>
+        <div class="comment-form">
+          <input id="commentAuthor" maxlength="10" placeholder="닉네임 10자 이내" />
+          <input id="commentInput" maxlength="40" placeholder="한줄평 40자 이내" />
+          <button id="commentSubmit" type="button">업데이트</button>
+        </div>
+        <div class="comment-history" id="commentHistory"><div class="comment-history-title">최근 한줄평</div></div>
       </div>
 
       <div class="panel">
         <h2>운용 메모</h2>
-        <div class="memo-grid">
-          <div class="memo-card"><div class="key">운용 방식</div><div class="val">5개 ETF 동일비중</div></div>
-          <div class="memo-card"><div class="key">포트 성격</div><div class="val">공격형 성장 ETF 포트</div></div>
-          <div class="memo-card"><div class="key">핵심 키워드</div><div class="val">AI / 전력 / 유동성 / 정책수혜</div></div>
-          <div class="memo-card"><div class="key">체크포인트</div><div class="val">AI반도체 방어력 유지 + 증권·방산 낙폭 안정화</div></div>
-        </div>
+        <div class="memo-grid" id="memoGrid"></div>
       </div>
     </section>
-
-    
   </main>
-<script>
-    const donutData = {
-      semi: {
-        name: "SOL AI반도체TOP2플러스",
-        weight: "23.93%",
-        value: "3,967,950",
-        pnl: "+437,800",
-        returnRate: "+12.40%",
-        tone: "gain",
-        comment: "AI반도체가 오늘도 포트 방어의 중심. 하락장 속 유일한 플러스 축."
+
+  <script>
+    const DATA = {
+      updatedAt: "2026.05.14 KRX 종가 기준",
+      depositDate: "2026.05.06",
+      depositAmount: 17505594,
+      totalBuyAmount: 17497030,
+      totalEvaluationAmount: 16572895,
+      cash: 3514,
+      accountProfitAmount: -929185,
+      accountReturnRate: -5.31,
+      capital: {
+        members: 9,
+        initialContribution: 1000000,
+        monthlyContribution: 50000,
+        round: 11,
+        totalCapital: 13950000
       },
-      securities: {
-        name: "KODEX 증권",
-        weight: "18.34%",
-        value: "3,040,800",
-        pnl: "-476,700",
-        returnRate: "-13.55%",
-        tone: "loss",
-        comment: "증권이 오늘 손실 확대의 가장 큰 부담. 유동성 기대는 있으나 조정폭 관리 필요."
-      },
-      power: {
-        name: "TIGER 코리아AI전력기기TOP3",
-        weight: "19.99%",
-        value: "3,315,950",
-        pnl: "-180,400",
-        returnRate: "-5.16%",
-        tone: "loss",
-        comment: "전력 인프라 기대감은 유효하지만 단기 조정 압력이 이어지는 구간."
-      },
-      battery: {
-        name: "TIGER 2차전지TOP10",
-        weight: "19.08%",
-        value: "3,165,135",
-        pnl: "-317,580",
-        returnRate: "-9.12%",
-        tone: "loss",
-        comment: "2차전지 약세 지속. 바닥 확인 전까지는 방어 관찰 구간."
-      },
-      defense: {
-        name: "PLUS K방산",
-        weight: "18.64%",
-        value: "3,091,270",
-        pnl: "-379,045",
-        returnRate: "-10.92%",
-        tone: "loss",
-        comment: "방산도 조정권 지속. 수급 부담이 남아 반등 확인 필요."
-      },
-      cash: {
-        name: "예수금",
-        weight: "0.02%",
-        value: "3,504",
-        pnl: "-",
-        returnRate: "-",
-        tone: "neutral",
-        comment: "예수금 비중은 미미. 현재 포트는 사실상 ETF 풀매수 상태."
+      holdings: [
+        {
+          key: "semi",
+          name: "SOL AI반도체TOP2플러스",
+          theme: "AI반도체",
+          color: "#22d3ee",
+          quantity: 210,
+          buyPrice: 16810,
+          currentPrice: 18995,
+          purchaseAmount: 3530150,
+          evaluationAmount: 3988950,
+          fee: 1110,
+          comment: "AI반도체가 오늘도 포트 방어의 핵심. 유일한 플러스 축으로 손실을 크게 줄임."
+        },
+        {
+          key: "battery",
+          name: "TIGER 2차전지TOP10",
+          theme: "2차전지",
+          color: "#a78bfa",
+          quantity: 237,
+          buyPrice: 14695,
+          currentPrice: 13585,
+          purchaseAmount: 3482715,
+          evaluationAmount: 3219645,
+          fee: 1000,
+          comment: "2차전지는 전일 대비 낙폭 축소. 아직 약세지만 반등 탄력 체크 구간."
+        },
+        {
+          key: "power",
+          name: "TIGER 코리아AI전력기기TOP3",
+          theme: "AI전력",
+          color: "#60a5fa",
+          quantity: 110,
+          buyPrice: 31785,
+          currentPrice: 28905,
+          purchaseAmount: 3496350,
+          evaluationAmount: 3179550,
+          fee: 990,
+          comment: "AI전력은 조정이 깊어짐. 장기 인프라 기대는 남았지만 단기 수급 확인 필요."
+        },
+        {
+          key: "defense",
+          name: "PLUS K방산",
+          theme: "K방산",
+          color: "#f472b6",
+          quantity: 43,
+          buyPrice: 80705,
+          currentPrice: 72700,
+          purchaseAmount: 3470315,
+          evaluationAmount: 3126100,
+          fee: 980,
+          comment: "방산은 약세 지속. 수급 부담이 남아 반등 확인 전까지 관찰."
+        },
+        {
+          key: "securities",
+          name: "KODEX 증권",
+          theme: "증권",
+          color: "#38bdf8",
+          quantity: 105,
+          buyPrice: 33500,
+          currentPrice: 29130,
+          purchaseAmount: 3517500,
+          evaluationAmount: 3058650,
+          fee: 970,
+          comment: "증권이 손실 부담 1위. 정책 기대보다 단기 차익실현 압력이 우세."
+        }
+      ],
+      statusMessages: [
+        "장마감 완료. AI반도체가 혼자 계좌 방어한 하루 🧠🔥",
+        "오늘은 AI반도체가 웃고 나머지는 숙제 제출 😇",
+        "손실은 남았지만 전일 대비 소폭 회복. 멘탈 유지 모드 🙏",
+        "2차전지 낙폭 축소는 체크, 증권은 아직 무거움 📉",
+        "동일비중 포트라 아픈 날도 같이 맞는다 😂",
+        "다음 반등의 키는 증권·방산 회복 탄력 🚀",
+        "오늘도 기록은 남긴다. 회비포트 생존 중 😎",
+        "AI반도체 덕분에 하루 버텼다 🧠"
+      ],
+      memo: {
+        style: "5개 ETF 동일비중",
+        character: "공격형 성장 ETF 포트",
+        keywords: "AI / 전력 / 유동성 / 정책수혜",
+        checkpoint: "AI반도체 방어력 유지 + 증권·방산 회복 확인"
       }
     };
 
-    const keys = ["semi", "power", "battery", "defense", "securities", "cash"];
-    let selectedIndex = 0;
-
-    function updateDonutDetail(key) {
-      const item = donutData[key];
-      if (!item) return;
-
-      selectedIndex = keys.indexOf(key);
-
-      document.getElementById("detailName").textContent = item.name;
-      document.getElementById("detailWeight").textContent = item.weight;
-      document.getElementById("detailComment").textContent = item.comment;
-      document.getElementById("detailValue").textContent = item.value;
-      document.getElementById("detailPnl").textContent = item.pnl;
-      document.getElementById("detailReturn").textContent = item.returnRate;
-
-      const pnlEl = document.getElementById("detailPnl");
-      const returnEl = document.getElementById("detailReturn");
-      const toneClass = item.tone === "gain" ? "gain" : item.tone === "loss" ? "loss" : "";
-      pnlEl.className = toneClass;
-      returnEl.className = toneClass;
-
-      document.querySelectorAll(".legend-row").forEach(row => {
-        row.classList.toggle("active", row.dataset.key === key);
-      });
-
-      document.querySelectorAll(".donut-segment").forEach(segment => {
-        segment.classList.toggle("active", segment.dataset.key === key);
-      });
-    }
-
-    document.querySelectorAll(".legend-row").forEach(row => {
-      row.addEventListener("click", () => updateDonutDetail(row.dataset.key));
-    });
-
-    document.querySelectorAll(".donut-segment").forEach(segment => {
-      segment.addEventListener("click", event => {
-        event.stopPropagation();
-        updateDonutDetail(segment.dataset.key);
-      });
-    });
-
-    document.getElementById("donutChart")?.addEventListener("click", () => {
-      selectedIndex = (selectedIndex + 1) % keys.length;
-      updateDonutDetail(keys[selectedIndex]);
-    });
-
     const COMMENT_API_URL = "https://script.google.com/macros/s/AKfycbxYXyr27dN-8l00hi7AI5-1bK7UTKZyqOXNtADv1okM5B0kOEN3OJk6jWo-YEnUiQhi/exec";
+    const CASH_COLOR = "#4b5563";
 
-    const statusMessages = [
-      "장마감 완료. AI반도체 혼자 플러스 방어 성공 🧠🔥",
-      "오늘은 AI반도체가 멱살 잡고 버틴 하루 😇",
-      "증권·방산·2차전지 조정 압박… 오늘은 버티는 날 📉",
-      "전력도 흔들렸지만 다음 턴을 기다리는 구간 ⚡",
-      "마이너스는 커졌지만 기록은 남는다. 멘탈 관리 모드 🙏",
-      "동일비중 포트답게 아픈 날도 같이 맞는다 😂",
-      "다음 반등 때 누가 먼저 일어나는지 체크하자 🚀",
-      "오늘의 결론: AI반도체는 효자, 증권은 숙제 😂"
+    function won(value) { return Number(value).toLocaleString("ko-KR") + "원"; }
+    function num(value) { return Number(value).toLocaleString("ko-KR"); }
+    function signedWon(value) { return (value > 0 ? "+" : "") + Number(value).toLocaleString("ko-KR"); }
+    function signedPct(value) { return (value > 0 ? "+" : "") + Number(value).toFixed(2) + "%"; }
+    function tone(value) { return value > 0 ? "gain" : value < 0 ? "loss" : ""; }
+
+    const totalAsset = DATA.totalEvaluationAmount + DATA.cash;
+    const stockWeight = DATA.totalEvaluationAmount / totalAsset * 100;
+    const cashWeight = DATA.cash / totalAsset * 100;
+    const capitalProfit = totalAsset - DATA.capital.totalCapital;
+    const capitalReturn = capitalProfit / DATA.capital.totalCapital * 100;
+
+    const holdings = DATA.holdings.map(item => {
+      const profitAmount = item.profitAmount ?? (item.evaluationAmount - item.purchaseAmount - (item.fee || 0));
+      const returnRate = profitAmount / item.purchaseAmount * 100;
+      const weight = item.evaluationAmount / totalAsset * 100;
+      return { ...item, profitAmount, returnRate, weight, tone: tone(profitAmount) };
+    }).sort((a, b) => b.weight - a.weight);
+
+    const rowsForWeight = [
+      ...holdings,
+      {
+        key: "cash",
+        name: "예수금",
+        theme: "현금",
+        color: CASH_COLOR,
+        evaluationAmount: DATA.cash,
+        profitAmount: 0,
+        returnRate: 0,
+        weight: cashWeight,
+        tone: "",
+        comment: "예수금 비중은 미미. 현재 포트는 사실상 ETF 풀매수 상태."
+      }
     ];
 
-    const statusBox = document.getElementById("statusBox");
-    const statusMessage = document.getElementById("statusMessage");
+    function renderHeader() {
+      document.getElementById("dateText").textContent = DATA.updatedAt;
+      document.getElementById("kpiGrid").innerHTML = `
+        <div class="kpi-card">
+          <div class="kpi-top"><div class="icon">💰</div><span class="muted">원금 기준<br>(${DATA.depositDate})</span></div>
+          <div class="kpi-label">입금금액</div>
+          <div class="kpi-value">${won(DATA.depositAmount)}</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-top"><div class="icon">📊</div><span class="muted">주식 평가</span></div>
+          <div class="kpi-label">총 평가금액</div>
+          <div class="kpi-value">${won(DATA.totalEvaluationAmount)}</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-top"><div class="icon">📉</div><span class="muted">${signedPct(DATA.accountReturnRate)}</span></div>
+          <div class="kpi-label">총 수익금액</div>
+          <div class="kpi-value ${tone(DATA.accountProfitAmount)}">${won(DATA.accountProfitAmount)}</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-top"><div class="icon">🔥</div><span class="muted">${cashWeight.toFixed(2)}%</span></div>
+          <div class="kpi-label">예수금</div>
+          <div class="kpi-value">${won(DATA.cash)}</div>
+        </div>
+      `;
+
+      document.getElementById("assetPanel").innerHTML = `
+        <div class="panel-head" style="margin-bottom:0; align-items:center;">
+          <div>
+            <h2>총 자산</h2>
+            <p class="muted">총 평가금액 + 예수금 기준</p>
+          </div>
+          <div class="mini-box" style="padding:14px 20px;">
+            <span class="muted">현재 총 자산</span>
+            <strong style="font-size:36px; color:#67e8f9; margin-top:6px; display:block;">${won(totalAsset)}</strong>
+          </div>
+        </div>
+      `;
+
+      document.getElementById("capitalPanel").innerHTML = `
+        <h2>💰 DNW 자본금</h2>
+        <div class="memo-grid" style="margin-top:20px;">
+          <div class="memo-card"><div class="key">참여 인원</div><div class="val">${DATA.capital.members}명</div></div>
+          <div class="memo-card"><div class="key">창립 출자금</div><div class="val">1인당 ${won(DATA.capital.initialContribution).replace("원", "")}</div></div>
+          <div class="memo-card"><div class="key">월 정기 불입금</div><div class="val">1인당 ${won(DATA.capital.monthlyContribution).replace("원", "")}</div></div>
+          <div class="memo-card"><div class="key">납부 회차</div><div class="val">${DATA.capital.round}회차 완료</div></div>
+          <div class="memo-card" style="grid-column: span 2; border:2px solid rgba(103,232,249,0.35); background:linear-gradient(180deg, rgba(34,211,238,0.08), rgba(255,255,255,0.05));">
+            <div class="key">총 자본금</div>
+            <div class="val" style="font-size:32px; color:#67e8f9; margin-top:8px;">${won(DATA.capital.totalCapital)}</div>
+            <div style="margin-top:12px; font-size:15px; color:#d4d4d8; line-height:1.6;">
+              자본금 대비 수익금 <span class="gain" style="font-weight:800;">${signedWon(capitalProfit)}원</span><br>
+              자본금 대비 수익률 <span class="gain" style="font-weight:800;">${signedPct(capitalReturn)}</span>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderDonut() {
+      document.getElementById("stockWeightText").textContent = stockWeight.toFixed(2) + "%";
+      document.getElementById("donutCenter").textContent = `${stockWeight.toFixed(2)}%
+주식비중`;
+
+      const svg = document.getElementById("donutSvg");
+      svg.innerHTML = '<circle class="donut-segment-bg" cx="130" cy="130" r="90"></circle>';
+      let offset = 0;
+      rowsForWeight.forEach((item, index) => {
+        const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+        circle.setAttribute("class", "donut-segment" + (index === 0 ? " active" : ""));
+        circle.setAttribute("data-key", item.key);
+        circle.setAttribute("cx", "130");
+        circle.setAttribute("cy", "130");
+        circle.setAttribute("r", "90");
+        circle.setAttribute("pathLength", "100");
+        circle.setAttribute("stroke", item.color);
+        circle.setAttribute("stroke-dasharray", `${Math.max(item.weight, 0.02).toFixed(2)} ${(100 - Math.max(item.weight, 0.02)).toFixed(2)}`);
+        circle.setAttribute("stroke-dashoffset", String(-offset.toFixed(2)));
+        circle.addEventListener("click", event => {
+          event.stopPropagation();
+          updateDonutDetail(item.key);
+        });
+        svg.appendChild(circle);
+        offset += item.weight;
+      });
+
+      document.getElementById("donutLegend").innerHTML = rowsForWeight.map((item, index) => `
+        <div class="legend-row ${index === 0 ? "active" : ""}" data-key="${item.key}">
+          <span class="legend-dot" style="background:${item.color};"></span>
+          <span>${item.name}</span>
+          <strong>${item.weight.toFixed(2)}%</strong>
+        </div>
+      `).join("");
+
+      document.querySelectorAll(".legend-row").forEach(row => {
+        row.addEventListener("click", () => updateDonutDetail(row.dataset.key));
+      });
+
+      updateDonutDetail(rowsForWeight[0].key);
+    }
+
+    function updateDonutDetail(key) {
+      const item = rowsForWeight.find(row => row.key === key);
+      if (!item) return;
+      const detailTone = tone(item.profitAmount);
+      document.getElementById("donutDetail").innerHTML = `
+        <div class="donut-detail-title">
+          <span>${item.name}</span>
+          <span class="cyan">${item.weight.toFixed(2)}%</span>
+        </div>
+        <div class="muted">${item.comment}</div>
+        <div class="donut-detail-grid">
+          <div class="donut-detail-cell"><span>평가금액</span><strong>${num(item.evaluationAmount)}</strong></div>
+          <div class="donut-detail-cell"><span>수익금</span><strong class="${detailTone}">${item.key === "cash" ? "-" : signedWon(item.profitAmount)}</strong></div>
+          <div class="donut-detail-cell"><span>수익률</span><strong class="${detailTone}">${item.key === "cash" ? "-" : signedPct(item.returnRate)}</strong></div>
+        </div>
+      `;
+
+      document.querySelectorAll(".legend-row").forEach(row => row.classList.toggle("active", row.dataset.key === key));
+      document.querySelectorAll(".donut-segment").forEach(segment => segment.classList.toggle("active", segment.dataset.key === key));
+    }
+
+    function cycleDonutDetail() {
+      const activeKey = document.querySelector(".legend-row.active")?.dataset.key || rowsForWeight[0].key;
+      const currentIndex = rowsForWeight.findIndex(item => item.key === activeKey);
+      const nextItem = rowsForWeight[(currentIndex + 1) % rowsForWeight.length];
+      updateDonutDetail(nextItem.key);
+    }
+
+    function renderPnlChart() {
+      document.getElementById("pnlBox").textContent = won(DATA.accountProfitAmount);
+      const maxLoss = Math.max(...holdings.map(item => Math.abs(item.profitAmount)));
+      document.getElementById("pnlChart").innerHTML = holdings.map(item => {
+        const width = Math.max(4, Math.min(50, Math.abs(item.profitAmount) / maxLoss * 50));
+        return `
+          <div class="pnl-row">
+            <span>${item.theme}</span>
+            <div class="pnl-bar-track"><span class="pnl-mid"></span><span class="pnl-bar ${item.profitAmount >= 0 ? "positive" : "negative"}" style="width:${width.toFixed(1)}%"></span></div>
+            <span class="pnl-value ${item.tone}">${signedWon(item.profitAmount)}</span>
+          </div>
+        `;
+      }).join("");
+    }
+
+    function renderTable() {
+      document.getElementById("accountPnlBox").textContent = `${won(DATA.accountProfitAmount)} / ${signedPct(DATA.accountReturnRate)}`;
+      const tableRows = holdings.map(item => `
+        <tr>
+          <td>${item.name}</td>
+          <td>${num(item.quantity)}</td>
+          <td>${num(item.buyPrice)}</td>
+          <td>${num(item.currentPrice)}</td>
+          <td>${num(item.purchaseAmount)}</td>
+          <td>${num(item.evaluationAmount)}</td>
+          <td class="${item.tone}">${signedWon(item.profitAmount)}</td>
+          <td class="${item.tone}">${signedPct(item.returnRate)}</td>
+          <td class="cyan">${item.weight.toFixed(2)}%</td>
+        </tr>
+      `).join("");
+
+      document.getElementById("holdingsTable").innerHTML = tableRows + `
+        <tr>
+          <td>예수금</td>
+          <td colspan="5">${won(DATA.cash)}</td>
+          <td>-</td><td>-</td><td class="cyan">${cashWeight.toFixed(2)}%</td>
+        </tr>
+        <tr class="total-row">
+          <td>합계</td>
+          <td></td><td></td><td></td><td>${num(DATA.totalBuyAmount)}</td><td>${num(totalAsset)}</td><td class="loss">${signedWon(DATA.accountProfitAmount)}</td><td class="loss">${signedPct(DATA.accountReturnRate)}</td><td class="cyan">100.00%</td>
+        </tr>
+      `;
+
+      document.getElementById("mobileHoldings").innerHTML = holdings.map(item => `
+        <div class="holding-card">
+          <div class="holding-head"><div class="holding-title">${item.name}</div><div class="holding-weight">${item.weight.toFixed(2)}%</div></div>
+          <div class="holding-grid">
+            <div class="holding-cell"><span>수량</span><strong>${num(item.quantity)}</strong></div>
+            <div class="holding-cell"><span>수익률</span><strong class="${item.tone}">${signedPct(item.returnRate)}</strong></div>
+            <div class="holding-cell"><span>수익금</span><strong class="${item.tone}">${signedWon(item.profitAmount)}</strong></div>
+            <div class="holding-cell"><span>평가금액</span><strong>${num(item.evaluationAmount)}</strong></div>
+          </div>
+        </div>
+      `).join("");
+
+      const etfProfitSum = holdings.reduce((sum, item) => sum + item.profitAmount, 0);
+      const diff = DATA.accountProfitAmount - etfProfitSum;
+      document.getElementById("noteText").innerHTML = `※ 예수금은 국내주식 결제(T+2) 및 ETF 분배금·수수료 반영에 따라 장중·장마감 후 소폭 변동될 수 있음. 현재 총자산 기준: 평가금액 ${won(DATA.totalEvaluationAmount)} + 예수금 ${won(DATA.cash)} = ${won(totalAsset)}.<br>※ 수익금은 키움 계좌의 수수료 반영 후 평가손익 기준으로 표기. 개별 ETF 평가손익 합계는 ${won(etfProfitSum)}이며, 계좌 표시 총손익 ${won(DATA.accountProfitAmount)}과의 차이 ${won(diff)}입니다.`;
+    }
+
+    function renderMemoAndStatus() {
+      document.getElementById("statusMessage").textContent = DATA.statusMessages[0];
+      document.getElementById("memoGrid").innerHTML = `
+        <div class="memo-card"><div class="key">운용 방식</div><div class="val">${DATA.memo.style}</div></div>
+        <div class="memo-card"><div class="key">포트 성격</div><div class="val">${DATA.memo.character}</div></div>
+        <div class="memo-card"><div class="key">핵심 키워드</div><div class="val">${DATA.memo.keywords}</div></div>
+        <div class="memo-card"><div class="key">체크포인트</div><div class="val">${DATA.memo.checkpoint}</div></div>
+      `;
+    }
+
+    let currentStatus = 0;
+    function rotateStatusMessage() {
+      const statusBox = document.getElementById("statusBox");
+      const statusMessage = document.getElementById("statusMessage");
+      currentStatus = (currentStatus + 1) % DATA.statusMessages.length;
+      statusMessage.textContent = DATA.statusMessages[currentStatus];
+      statusBox.style.transform = "scale(0.985)";
+      setTimeout(() => { statusBox.style.transform = "scale(1)"; }, 120);
+    }
+
     const commentMeta = document.getElementById("commentMeta");
     const commentAuthor = document.getElementById("commentAuthor");
     const commentInput = document.getElementById("commentInput");
     const commentSubmit = document.getElementById("commentSubmit");
     const commentHistory = document.getElementById("commentHistory");
-    let currentStatus = 0;
-
     const savedAuthor = localStorage.getItem("dnwCommentAuthor");
     if (savedAuthor && commentAuthor) commentAuthor.value = savedAuthor;
-
-    function rotateStatusMessage() {
-      if (!statusBox || !statusMessage) return;
-      currentStatus = (currentStatus + 1) % statusMessages.length;
-      statusMessage.textContent = statusMessages[currentStatus];
-      statusBox.style.transform = "scale(0.985)";
-      setTimeout(() => {
-        statusBox.style.transform = "scale(1)";
-      }, 120);
-    }
 
     async function fetchComments() {
       try {
@@ -1348,61 +769,35 @@
 
     function renderComments(data) {
       if (!data || !data.ok) return;
-
-      if (data.latest && statusMessage) {
-        statusMessage.textContent = data.latest.message || statusMessage.textContent;
+      if (data.latest) {
+        document.getElementById("statusMessage").textContent = data.latest.message || DATA.statusMessages[0];
         const author = data.latest.author || "DNW";
         const updatedAt = data.latest.updatedAt || "";
-        if (commentMeta) commentMeta.textContent = updatedAt ? `마지막 수정: ${author} · ${updatedAt}` : `작성자: ${author}`;
+        commentMeta.textContent = updatedAt ? `마지막 수정: ${author} · ${updatedAt}` : `작성자: ${author}`;
       }
-
-      if (commentHistory) {
-        const history = Array.isArray(data.history) ? data.history.slice(0, 5) : [];
-        commentHistory.innerHTML = '<div class="comment-history-title">최근 한줄평</div>' + history.map(item => {
-          const author = item.author || "DNW";
-          const message = item.message || "";
-          const time = item.updatedAt ? `<span style="color:#71717a;"> · ${item.updatedAt}</span>` : "";
-          return `<div class="comment-history-item"><strong>${author}</strong>${message}${time}</div>`;
-        }).join("");
-      }
+      const history = Array.isArray(data.history) ? data.history.slice(0, 5) : [];
+      commentHistory.innerHTML = '<div class="comment-history-title">최근 한줄평</div>' + history.map(item => {
+        const time = item.updatedAt ? `<span style="color:#71717a;"> · ${item.updatedAt}</span>` : "";
+        return `<div class="comment-history-item"><strong>${item.author || "DNW"}</strong>${item.message || ""}${time}</div>`;
+      }).join("");
     }
 
     async function submitComment() {
-      const author = (commentAuthor?.value || "").trim();
-      const message = (commentInput?.value || "").trim();
-
-      if (!author) {
-        alert("닉네임을 입력해주세요.");
-        return;
-      }
-      if (author.length > 10) {
-        alert("닉네임은 최대 10자까지 가능합니다.");
-        return;
-      }
-      if (!message) {
-        alert("한줄평을 입력해주세요.");
-        return;
-      }
-      if (message.length > 40) {
-        alert("한줄평은 최대 40자까지 가능합니다.");
-        return;
-      }
-
+      const author = (commentAuthor.value || "").trim();
+      const message = (commentInput.value || "").trim();
+      if (!author) return alert("닉네임을 입력해주세요.");
+      if (author.length > 10) return alert("닉네임은 최대 10자까지 가능합니다.");
+      if (!message) return alert("한줄평을 입력해주세요.");
+      if (message.length > 40) return alert("한줄평은 최대 40자까지 가능합니다.");
       localStorage.setItem("dnwCommentAuthor", author);
       commentSubmit.disabled = true;
       commentSubmit.textContent = "반영중";
-
       try {
-        const url = COMMENT_API_URL
-          + "?action=update"
-          + "&author=" + encodeURIComponent(author)
-          + "&message=" + encodeURIComponent(message)
-          + "&ts=" + Date.now();
+        const url = COMMENT_API_URL + "?action=update" + "&author=" + encodeURIComponent(author) + "&message=" + encodeURIComponent(message) + "&ts=" + Date.now();
         const response = await fetch(url);
         const data = await response.json();
-        if (!data.ok) {
-          alert(data.message || "저장에 실패했습니다.");
-        } else {
+        if (!data.ok) alert(data.message || "저장에 실패했습니다.");
+        else {
           commentInput.value = "";
           renderComments(data);
         }
@@ -1414,15 +809,20 @@
       }
     }
 
-    statusBox?.addEventListener("click", rotateStatusMessage);
-    commentSubmit?.addEventListener("click", submitComment);
-
-    const isLiveGithubPage = location.hostname.includes("github.io");
-    if (isLiveGithubPage) {
-      fetchComments();
-    } else if (commentMeta) {
-      commentMeta.textContent = "미리보기에서는 공유 한줄평 자동 불러오기를 잠시 꺼둠 · GitHub 배포본에서 자동 반영";
+    function init() {
+      renderHeader();
+      renderDonut();
+      renderPnlChart();
+      renderTable();
+      renderMemoAndStatus();
+      document.getElementById("donutChart").addEventListener("click", cycleDonutDetail);
+      document.getElementById("statusBox").addEventListener("click", rotateStatusMessage);
+      commentSubmit.addEventListener("click", submitComment);
+      if (location.hostname.includes("github.io")) fetchComments();
+      else commentMeta.textContent = "미리보기에서는 공유 한줄평 자동 불러오기를 잠시 꺼둠 · GitHub 배포본에서 자동 반영";
     }
+
+    init();
   </script>
 </body>
 </html>
