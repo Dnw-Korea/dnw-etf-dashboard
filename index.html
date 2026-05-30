@@ -404,14 +404,14 @@
 
   <script>
     const DATA = {
-      updatedAt: "2026.05.26 KRX 종가 기준",
+      updatedAt: "2026.05.29 KRX 종가 기준",
       depositDate: "2026.05.06",
       depositAmount: 17505594,
       totalBuyAmount: 17497030,
-      totalEvaluationAmount: 16720925,
-      cash: 3484,
-      accountProfitAmount: -781185,
-      accountReturnRate: -4.46,
+      totalEvaluationAmount: 16772500,
+      cash: 5965,
+      accountProfitAmount: -729620,
+      accountReturnRate: -4.17,
       capital: {
         members: 9,
         initialContribution: 1000000,
@@ -427,37 +427,11 @@
           color: "#22d3ee",
           quantity: 210,
           buyPrice: 16810,
-          currentPrice: 21685,
+          currentPrice: 25200,
           purchaseAmount: 3530150,
-          evaluationAmount: 4553850,
-          fee: 1200,
-          comment: "AI반도체가 포트의 절대 에이스. 조정장에서도 혼자 강하게 수익권을 지키는 핵심 버팀목."
-        },
-        {
-          key: "defense",
-          name: "PLUS K방산",
-          theme: "K방산",
-          color: "#f472b6",
-          quantity: 43,
-          buyPrice: 80705,
-          currentPrice: 73670,
-          purchaseAmount: 3470315,
-          evaluationAmount: 3167810,
-          fee: 990,
-          comment: "K방산은 낙폭을 일부 줄였지만 아직 회복 전. 수급 안정과 반등 탄력 확인이 필요."
-        },
-        {
-          key: "power",
-          name: "TIGER 코리아AI전력기기TOP3",
-          theme: "AI전력",
-          color: "#60a5fa",
-          quantity: 110,
-          buyPrice: 31785,
-          currentPrice: 27780,
-          purchaseAmount: 3496350,
-          evaluationAmount: 3055800,
-          fee: 970,
-          comment: "AI전력은 조정이 깊지만 장기 인프라 기대는 남아 있음. 반등 시 회복 속도 체크."
+          evaluationAmount: 5292000,
+          fee: 1310,
+          comment: "AI반도체가 5월 마지막 거래일의 확실한 에이스. 포트 손실을 크게 줄인 핵심 캐리 종목."
         },
         {
           key: "battery",
@@ -466,11 +440,24 @@
           color: "#a78bfa",
           quantity: 237,
           buyPrice: 14695,
-          currentPrice: 12930,
+          currentPrice: 13380,
           purchaseAmount: 3482715,
-          evaluationAmount: 3050190,
-          fee: 970,
-          comment: "2차전지는 여전히 약세권. 다만 낙폭 구간에서 바닥 확인 여부를 지켜볼 필요."
+          evaluationAmount: 3171060,
+          fee: 990,
+          comment: "2차전지는 아직 약세권이지만 낙폭은 비교적 관리되는 중. 반등 지속성 확인 필요."
+        },
+        {
+          key: "defense",
+          name: "PLUS K방산",
+          theme: "K방산",
+          color: "#f472b6",
+          quantity: 43,
+          buyPrice: 80705,
+          currentPrice: 68130,
+          purchaseAmount: 3470315,
+          evaluationAmount: 2929590,
+          fee: 950,
+          comment: "K방산은 조정 부담이 계속 남은 구간. 수급 안정과 회복 탄력 확인이 먼저."
         },
         {
           key: "securities",
@@ -479,28 +466,41 @@
           color: "#38bdf8",
           quantity: 105,
           buyPrice: 33500,
-          currentPrice: 27555,
+          currentPrice: 25680,
           purchaseAmount: 3517500,
-          evaluationAmount: 2893275,
-          fee: 950,
-          comment: "증권은 여전히 손실 부담 1위. 유동성 기대보다 단기 차익실현 압력이 더 강한 구간."
+          evaluationAmount: 2696400,
+          fee: 920,
+          comment: "증권은 여전히 손실 부담이 큰 축. 유동성 기대보다 단기 수급 압력이 우세."
+        },
+        {
+          key: "power",
+          name: "TIGER 코리아AI전력기기TOP3",
+          theme: "AI전력",
+          color: "#60a5fa",
+          quantity: 110,
+          buyPrice: 31785,
+          currentPrice: 24395,
+          purchaseAmount: 3496350,
+          evaluationAmount: 2683450,
+          fee: 920,
+          comment: "AI전력은 낙폭이 깊어진 구간. 장기 스토리는 남았지만 단기 회복 확인이 필요."
         }
       ],
       statusMessages: [
-        "장마감 완료. AI반도체가 멱살 잡고 손실을 줄인 하루 🧠🔥",
-        "반도체는 훨훨, 증권은 아직 숙제장 펼쳐둔 상태 😂",
-        "손실은 남았지만 전일보다 숨통은 트였다. 멘탈 회복 모드 😎",
-        "오늘의 에이스는 AI반도체, 다음 과제는 증권·전력 회복 확인 📌",
-        "동일비중 포트라 아픈 종목도 있지만, 한 종목이 제대로 캐리 중 🚀",
-        "K방산·2차전지는 버티기, 증권은 반등 확인이 먼저다 🔍",
-        "회비포트 생존 중. 아직 파랗지만 분위기는 조금 나아졌다 🙏",
-        "AI반도체 덕분에 오늘은 한숨 돌렸다 🧠"
+        "5월 마지막 거래일 마감. AI반도체가 혼자 계좌 멱살 잡고 끌어올림 🧠🔥",
+        "AI반도체는 월말 에이스, 나머지는 아직 숙제 제출 중 😇",
+        "손실은 남았지만 반도체 캐리로 숨통은 트였다 🙏",
+        "5월 마감 포인트: 반도체 강세 vs 전력·증권·방산 회복 지연 📌",
+        "동일비중 포트인데 한 종목이 너무 열심히 일하는 중 😂",
+        "다음 달 체크포인트는 증권·전력 반등과 방산 수급 안정 🚀",
+        "회비포트 5월 마감. 아직 파랗지만 기록은 쌓이고 있다 😎",
+        "AI반도체 덕분에 5월 마지막 장은 그나마 체면치레 성공 🧠"
       ],
       memo: {
         style: "5개 ETF 동일비중",
         character: "공격형 성장 ETF 포트",
         keywords: "AI / 전력 / 유동성 / 정책수혜",
-        checkpoint: "AI반도체 강세 유지 + 증권·전력 반등 탄력 확인"
+        checkpoint: "AI반도체 강세 유지 + 증권·전력·방산 회복 탄력 확인"
       }
     };
 
